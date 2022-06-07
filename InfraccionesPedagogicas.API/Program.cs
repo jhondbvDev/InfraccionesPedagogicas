@@ -1,5 +1,7 @@
 
-using InfraccionesPedagogicas.Infrastructure.Data;
+
+using InfraccionesPedagogicas.Application;
+using InfraccionesPedagogicas.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,9 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-
-var connectionString = builder.Configuration.GetConnectionString("PostgresSQLConnection");
-builder.Services.AddDbContext<InfraccionesDbContext>(options => options.UseNpgsql(connectionString));
+builder.Services.AddApplication();
+builder.Services.AddInfrastructure(builder.Configuration);
 
 
 var app = builder.Build();

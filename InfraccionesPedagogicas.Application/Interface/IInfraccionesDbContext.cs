@@ -1,5 +1,4 @@
-﻿using InfraccionesPedagogicas.Application.Interface;
-using InfraccionesPedagogicas.Core.Entities;
+﻿using InfraccionesPedagogicas.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InfraccionesPedagogicas.Infrastructure.Data
+namespace InfraccionesPedagogicas.Application.Interface
 {
-    public  class InfraccionesDbContext:DbContext,IInfraccionesDbContext
+    public  interface IInfraccionesDbContext
     {
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Sala> Salas { get; set; }
@@ -19,13 +18,5 @@ namespace InfraccionesPedagogicas.Infrastructure.Data
         public DbSet<Infractor> Infractores { get; set; }
         public DbSet<Asistencia> Asistencias { get; set; }
 
-        public InfraccionesDbContext(DbContextOptions<InfraccionesDbContext> options):base(options)
-        {
-
-        }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(InfraccionesDbContext).Assembly);
-        }
     }
 }
