@@ -5,11 +5,11 @@ VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfraccionesPedagogicas.API", "InfraccionesPedagogicas.API\InfraccionesPedagogicas.API.csproj", "{FD8DA95D-0325-4F3E-85CD-71EA968E4736}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfraccionesPedagogicas.BackgroundLoader", "InfraccionesPedagogicas.BackgroundLoader\InfraccionesPedagogicas.BackgroundLoader.csproj", "{9E2D9E22-DA73-41AC-B157-25C5579E0F84}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfraccionesPedagogicas.Infrastructure", "InfraccionesPedagogicas.DAL\InfraccionesPedagogicas.Infrastructure.csproj", "{7CB0F928-1983-451A-B03F-32B45EB4DAA5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfraccionesPedagogicas.Core", "InfraccionesPedagogicas.Business\InfraccionesPedagogicas.Core.csproj", "{E73AF609-2718-4A80-88B1-BEAAD1754C0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfraccionesPedagogicas.Application", "InfraccionesPedagogicas.Application\InfraccionesPedagogicas.Application.csproj", "{543CF9BC-E4AE-4E9E-B9A7-15FAFB07C27B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +21,6 @@ Global
 		{FD8DA95D-0325-4F3E-85CD-71EA968E4736}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD8DA95D-0325-4F3E-85CD-71EA968E4736}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD8DA95D-0325-4F3E-85CD-71EA968E4736}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9E2D9E22-DA73-41AC-B157-25C5579E0F84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E2D9E22-DA73-41AC-B157-25C5579E0F84}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9E2D9E22-DA73-41AC-B157-25C5579E0F84}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9E2D9E22-DA73-41AC-B157-25C5579E0F84}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7CB0F928-1983-451A-B03F-32B45EB4DAA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7CB0F928-1983-451A-B03F-32B45EB4DAA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CB0F928-1983-451A-B03F-32B45EB4DAA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{E73AF609-2718-4A80-88B1-BEAAD1754C0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E73AF609-2718-4A80-88B1-BEAAD1754C0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E73AF609-2718-4A80-88B1-BEAAD1754C0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{543CF9BC-E4AE-4E9E-B9A7-15FAFB07C27B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{543CF9BC-E4AE-4E9E-B9A7-15FAFB07C27B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{543CF9BC-E4AE-4E9E-B9A7-15FAFB07C27B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{543CF9BC-E4AE-4E9E-B9A7-15FAFB07C27B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

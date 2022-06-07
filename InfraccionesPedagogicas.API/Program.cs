@@ -1,8 +1,16 @@
+
+using InfraccionesPedagogicas.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+var connectionString = builder.Configuration.GetConnectionString("PostgresSQLConnection");
+builder.Services.AddDbContext<InfraccionesDbContext>(options => options.UseNpgsql(connectionString));
+
 
 var app = builder.Build();
 
