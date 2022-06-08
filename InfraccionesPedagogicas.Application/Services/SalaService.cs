@@ -26,14 +26,14 @@ namespace InfraccionesPedagogicas.Application.Services
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Sala>> GetAll()
+        public async Task<IEnumerable<Sala>> GetAll()
         {
-           return _salaRepository.GetAll();
+           return await _salaRepository.GetAll();
         }
 
-        public Task<Sala> GetById(int id)
+        public async Task<Sala> GetById(int id)
         {
-            return _salaRepository.GetById(id);
+            return await _salaRepository.GetById(id);
         }
 
         public Task<bool> Update(Sala entity)

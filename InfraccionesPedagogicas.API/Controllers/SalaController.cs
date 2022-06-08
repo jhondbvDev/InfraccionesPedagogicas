@@ -15,7 +15,7 @@ namespace InfraccionesPedagogicas.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetSalas()
         {
-            var salas = _salaService.GetAll();
+            var salas = await _salaService.GetAll();
             return Ok(salas);
         }
     }
