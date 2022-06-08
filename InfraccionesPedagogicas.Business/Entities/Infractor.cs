@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace InfraccionesPedagogicas.Core.Entities
 {
-    public class Infractor
+    public class Infractor: BaseEntity<string>
     {
         
         public string Nombre { get; set; }
@@ -17,7 +17,7 @@ namespace InfraccionesPedagogicas.Core.Entities
         [StringLength(15)]
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public string Id { get; set; }
+        public override string Id { get; set; }
 
     }
 }

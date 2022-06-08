@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InfraccionesPedagogicas.Application.Interface
+namespace InfraccionesPedagogicas.Application.Interfaces
 {
     public  interface IInfraccionesDbContext
     {

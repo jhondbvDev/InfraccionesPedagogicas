@@ -1,4 +1,4 @@
-﻿using InfraccionesPedagogicas.Application.Interface;
+﻿using InfraccionesPedagogicas.Application.Interfaces;
 using InfraccionesPedagogicas.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;

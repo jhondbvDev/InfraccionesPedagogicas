@@ -15,10 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\InfraccionesPedagogicas.Application\InfraccionesPedagogicas.Application.csproj" />
     <ProjectReference Include="..\InfraccionesPedagogicas.DAL\InfraccionesPedagogicas.Infrastructure.csproj" />
   </ItemGroup>

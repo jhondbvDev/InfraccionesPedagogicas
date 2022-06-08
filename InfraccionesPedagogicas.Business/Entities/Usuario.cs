@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace InfraccionesPedagogicas.Core.Entities
 {
-    public class Usuario
+    public class Usuario: BaseEntity<int>
     {
-        public int Id { get; set; }
+        
         public string Nombre { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }

@@ -42,7 +42,7 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Asistencias");
+                    b.ToTable("Asistencias", (string)null);
                 });
 
             modelBuilder.Entity("InfraccionesPedagogicas.Core.Entities.DatosInfractor", b =>
@@ -75,7 +75,7 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DatosInfractor");
+                    b.ToTable("DatosInfractor", (string)null);
                 });
 
             modelBuilder.Entity("InfraccionesPedagogicas.Core.Entities.Infraccion", b =>
@@ -100,7 +100,7 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
 
                     b.HasIndex("InfractorId");
 
-                    b.ToTable("Infracciones");
+                    b.ToTable("Infracciones", (string)null);
                 });
 
             modelBuilder.Entity("InfraccionesPedagogicas.Core.Entities.Infractor", b =>
@@ -119,7 +119,7 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Infractores");
+                    b.ToTable("Infractores", (string)null);
                 });
 
             modelBuilder.Entity("InfraccionesPedagogicas.Core.Entities.Rol", b =>
@@ -136,7 +136,7 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Roles");
+                    b.ToTable("Roles", (string)null);
                 });
 
             modelBuilder.Entity("InfraccionesPedagogicas.Core.Entities.Sala", b =>
@@ -164,7 +164,7 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
 
                     b.HasIndex("UsuarioId");
 
-                    b.ToTable("Salas");
+                    b.ToTable("Salas", (string)null);
                 });
 
             modelBuilder.Entity("InfraccionesPedagogicas.Core.Entities.Usuario", b =>
@@ -194,7 +194,7 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
 
                     b.HasIndex("RolId");
 
-                    b.ToTable("Usuarios");
+                    b.ToTable("Usuarios", (string)null);
                 });
 
             modelBuilder.Entity("InfraccionesPedagogicas.Core.Entities.Infraccion", b =>

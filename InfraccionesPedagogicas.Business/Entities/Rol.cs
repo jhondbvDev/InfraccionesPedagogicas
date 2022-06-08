@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace InfraccionesPedagogicas.Core.Entities
 {
-    public class Rol
+    public class Rol : BaseEntity<int>
     {
-        public int Id { get; set; }
+        
         public string Descripcion { get; set; }
     }
 }

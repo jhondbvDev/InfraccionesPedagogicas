@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace InfraccionesPedagogicas.Core.Entities
 {
-    public class Infraccion
+    public class Infraccion: BaseEntity<int>
     {
-        public int Id { get; set; }
+
         public string NumeroInfraccion { get; set; }
         public DateTime Fecha { get; set; }
         public Infractor Infractor { get; set; }    

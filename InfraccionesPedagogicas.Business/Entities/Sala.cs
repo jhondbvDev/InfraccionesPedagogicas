@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace InfraccionesPedagogicas.Core.Entities
 {
-    public class Sala
+    public class Sala: BaseEntity<int>
     {
-        public int Id { get; set; }
+       
         public DateTime Fecha { get; set; }
         public int Cupo { get; set; }
         public string Link { get; set; }
