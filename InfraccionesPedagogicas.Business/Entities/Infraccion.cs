@@ -11,6 +11,6 @@ namespace InfraccionesPedagogicas.Core.Entities
 
         public string NumeroInfraccion { get; set; }
         public DateTime Fecha { get; set; }
-        public Infractor Infractor { get; set; }    
+        public virtual Infractor Infractor { get; set; }    
     }
 }

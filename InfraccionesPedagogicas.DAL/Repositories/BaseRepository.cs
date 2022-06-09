@@ -37,6 +37,7 @@ namespace InfraccionesPedagogicas.Infrastructure.Repositories
         public async Task<IEnumerable<T>> GetAll()
         {
             var result = await _entities.ToListAsync();
+            
             return result;
         }
 

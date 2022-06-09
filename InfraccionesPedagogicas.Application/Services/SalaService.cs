@@ -16,14 +16,15 @@ namespace InfraccionesPedagogicas.Application.Services
         {
             _salaRepository = salaRepository;
         }
-        public Task Add(Sala entity)
+        public async Task Add(Sala entity)
         {
-            throw new NotImplementedException();
+             await _salaRepository.Add(entity);
         }
 
-        public Task<bool> Delete(Sala entity)
+        public async Task<bool> Delete(int Id)
         {
-            throw new NotImplementedException();
+            var sala = await _salaRepository.GetById(Id);
+            return await _salaRepository.Delete(sala);
         }
 
         public async Task<IEnumerable<Sala>> GetAll()
@@ -36,9 +37,24 @@ namespace InfraccionesPedagogicas.Application.Services
             return await _salaRepository.GetById(id);
         }
 
-        public Task<bool> Update(Sala entity)
+        public async Task<bool> Update(Sala entity)
         {
-            throw new NotImplementedException();
+            var salaOld = await _salaRepository.GetById(entity.Id);
+
+            if (salaOld != null)
+            {
+
+                salaOld.Fecha = entity.Fecha;
+                salaOld.Link = entity.Link;
+                salaOld.Cupo = entity.Cupo;
+
+                return await _salaRepository.Update(salaOld);
+            }
+            else
+            {
+                throw new Exception("La sala que estas intentando editar no existe, intenta con otra sala.");
+                //throw new BusinessException("La sala que estas intentando editar no existe, intenta con otra sala.");
+            }
         }
     }
 }

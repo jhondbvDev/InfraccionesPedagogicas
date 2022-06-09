@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace InfraccionesPedagogicas.Infrastructure.Migrations
 {
     [DbContext(typeof(InfraccionesDbContext))]
-    [Migration("20220607171227_first migration")]
+    [Migration("20220609034824_first migration")]
     partial class firstmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,10 +39,12 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("IdSala")
+                    b.Property<int>("SalaId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("SalaId");
 
                     b.ToTable("Asistencias");
                 });
@@ -87,10 +89,6 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Documento")
-                        .IsRequired()
-                        .HasColumnType("text");
 
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("timestamp with time zone");
@@ -159,9 +157,6 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("IdUsuario")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Link")
                         .IsRequired()
                         .HasColumnType("text");
@@ -188,9 +183,6 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("IdRol")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("text");
@@ -209,10 +201,21 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
                     b.ToTable("Usuarios");
                 });
 
+            modelBuilder.Entity("InfraccionesPedagogicas.Core.Entities.Asistencia", b =>
+                {
+                    b.HasOne("InfraccionesPedagogicas.Core.Entities.Sala", "Sala")
+                        .WithMany()
+                        .HasForeignKey("SalaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Sala");
+                });
+
             modelBuilder.Entity("InfraccionesPedagogicas.Core.Entities.Infraccion", b =>
                 {
                     b.HasOne("InfraccionesPedagogicas.Core.Entities.Infractor", "Infractor")
-                        .WithMany()
+                        .WithMany("Infracciones")
                         .HasForeignKey("InfractorId");
 
                     b.Navigation("Infractor");
@@ -221,7 +224,7 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
             modelBuilder.Entity("InfraccionesPedagogicas.Core.Entities.Sala", b =>
                 {
                     b.HasOne("InfraccionesPedagogicas.Core.Entities.Usuario", "Usuario")
-                        .WithMany()
+                        .WithMany("Salas")
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -232,12 +235,27 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
             modelBuilder.Entity("InfraccionesPedagogicas.Core.Entities.Usuario", b =>
                 {
                     b.HasOne("InfraccionesPedagogicas.Core.Entities.Rol", "Rol")
-                        .WithMany()
+                        .WithMany("Usuarios")
                         .HasForeignKey("RolId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Rol");
+                });
+
+            modelBuilder.Entity("InfraccionesPedagogicas.Core.Entities.Infractor", b =>
+                {
+                    b.Navigation("Infracciones");
+                });
+
+            modelBuilder.Entity("InfraccionesPedagogicas.Core.Entities.Rol", b =>
+                {
+                    b.Navigation("Usuarios");
+                });
+
+            modelBuilder.Entity("InfraccionesPedagogicas.Core.Entities.Usuario", b =>
+                {
+                    b.Navigation("Salas");
                 });
 #pragma warning restore 612, 618
         }

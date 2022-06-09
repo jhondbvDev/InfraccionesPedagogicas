@@ -19,5 +19,7 @@ namespace InfraccionesPedagogicas.Core.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public override string Id { get; set; }
 
+        public virtual ICollection<Infraccion> Infracciones { get; set; }
+
     }
 }

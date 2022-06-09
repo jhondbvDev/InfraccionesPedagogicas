@@ -1,4 +1,7 @@
-﻿using InfraccionesPedagogicas.Application.Interfaces.Services;
+﻿using AutoMapper;
+using InfraccionesPedagogicas.Application.DTOs;
+using InfraccionesPedagogicas.Application.Interfaces.Services;
+using InfraccionesPedagogicas.Core.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InfraccionesPedagogicas.API.Controllers
@@ -8,15 +11,47 @@ namespace InfraccionesPedagogicas.API.Controllers
     public class SalaController : Controller
     {
         private readonly ISalaService _salaService;
-        public SalaController(ISalaService salaService)
+        private readonly IMapper _mapper;
+        public SalaController(ISalaService salaService, IMapper mapper)
         {
             _salaService = salaService;
+            _mapper = mapper;
         }
         [HttpGet]
         public async Task<IActionResult> GetSalas()
         {
             var salas = await _salaService.GetAll();
-            return Ok(salas);
+            var salasDto = _mapper.Map<List<SalaDTO>>(salas);
+            return Ok(salasDto);
+        }
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> GetSala(int Id)
+        {
+            var sala = await _salaService.GetById(Id);
+            return Ok(sala);
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreateSala(CreateSalaDTO dto)
+        {
+            var sala = _mapper.Map<Sala>(dto);
+            await _salaService.Add(sala);
+            return Ok();
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateSala(UpdateSalaDTO dto)
+        {
+            var sala = _mapper.Map<Sala>(dto);
+            await _salaService.Update(sala);
+            return Ok();
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteSala(int id)
+        {
+            
+            var result = await _salaService.Delete(id);
+            return Ok(result);
         }
     }
 }

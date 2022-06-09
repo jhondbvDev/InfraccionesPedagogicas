@@ -37,12 +37,14 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("IdSala")
+                    b.Property<int>("SalaId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Asistencias", (string)null);
+                    b.HasIndex("SalaId");
+
+                    b.ToTable("Asistencias");
                 });
 
             modelBuilder.Entity("InfraccionesPedagogicas.Core.Entities.DatosInfractor", b =>
@@ -75,7 +77,7 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DatosInfractor", (string)null);
+                    b.ToTable("DatosInfractor");
                 });
 
             modelBuilder.Entity("InfraccionesPedagogicas.Core.Entities.Infraccion", b =>
@@ -100,7 +102,7 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
 
                     b.HasIndex("InfractorId");
 
-                    b.ToTable("Infracciones", (string)null);
+                    b.ToTable("Infracciones");
                 });
 
             modelBuilder.Entity("InfraccionesPedagogicas.Core.Entities.Infractor", b =>
@@ -119,7 +121,7 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Infractores", (string)null);
+                    b.ToTable("Infractores");
                 });
 
             modelBuilder.Entity("InfraccionesPedagogicas.Core.Entities.Rol", b =>
@@ -136,7 +138,7 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Roles", (string)null);
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("InfraccionesPedagogicas.Core.Entities.Sala", b =>
@@ -164,7 +166,7 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
 
                     b.HasIndex("UsuarioId");
 
-                    b.ToTable("Salas", (string)null);
+                    b.ToTable("Salas");
                 });
 
             modelBuilder.Entity("InfraccionesPedagogicas.Core.Entities.Usuario", b =>
@@ -194,13 +196,24 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
 
                     b.HasIndex("RolId");
 
-                    b.ToTable("Usuarios", (string)null);
+                    b.ToTable("Usuarios");
+                });
+
+            modelBuilder.Entity("InfraccionesPedagogicas.Core.Entities.Asistencia", b =>
+                {
+                    b.HasOne("InfraccionesPedagogicas.Core.Entities.Sala", "Sala")
+                        .WithMany()
+                        .HasForeignKey("SalaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Sala");
                 });
 
             modelBuilder.Entity("InfraccionesPedagogicas.Core.Entities.Infraccion", b =>
                 {
                     b.HasOne("InfraccionesPedagogicas.Core.Entities.Infractor", "Infractor")
-                        .WithMany()
+                        .WithMany("Infracciones")
                         .HasForeignKey("InfractorId");
 
                     b.Navigation("Infractor");
@@ -209,7 +222,7 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
             modelBuilder.Entity("InfraccionesPedagogicas.Core.Entities.Sala", b =>
                 {
                     b.HasOne("InfraccionesPedagogicas.Core.Entities.Usuario", "Usuario")
-                        .WithMany()
+                        .WithMany("Salas")
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -220,12 +233,27 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
             modelBuilder.Entity("InfraccionesPedagogicas.Core.Entities.Usuario", b =>
                 {
                     b.HasOne("InfraccionesPedagogicas.Core.Entities.Rol", "Rol")
-                        .WithMany()
+                        .WithMany("Usuarios")
                         .HasForeignKey("RolId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Rol");
+                });
+
+            modelBuilder.Entity("InfraccionesPedagogicas.Core.Entities.Infractor", b =>
+                {
+                    b.Navigation("Infracciones");
+                });
+
+            modelBuilder.Entity("InfraccionesPedagogicas.Core.Entities.Rol", b =>
+                {
+                    b.Navigation("Usuarios");
+                });
+
+            modelBuilder.Entity("InfraccionesPedagogicas.Core.Entities.Usuario", b =>
+                {
+                    b.Navigation("Salas");
                 });
 #pragma warning restore 612, 618
         }

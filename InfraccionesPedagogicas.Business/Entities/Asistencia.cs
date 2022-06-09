@@ -11,7 +11,8 @@ namespace InfraccionesPedagogicas.Core.Entities
  
         public string Documento { get; set; }
         public bool Asistio { get; set; }
-        public int IdSala { get; set; }
+        public virtual Sala Sala { get; set; }
+
 
     }
 }

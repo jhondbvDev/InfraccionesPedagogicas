@@ -11,21 +11,6 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Asistencias",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Documento = table.Column<string>(type: "text", nullable: false),
-                    Asistio = table.Column<bool>(type: "boolean", nullable: false),
-                    IdSala = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Asistencias", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "DatosInfractor",
                 columns: table => new
                 {
@@ -76,7 +61,6 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     NumeroInfraccion = table.Column<string>(type: "text", nullable: false),
                     Fecha = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Documento = table.Column<string>(type: "text", nullable: false),
                     InfractorId = table.Column<string>(type: "character varying(15)", nullable: true)
                 },
                 constraints: table =>
@@ -98,7 +82,6 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
                     Nombre = table.Column<string>(type: "text", nullable: false),
                     Email = table.Column<string>(type: "text", nullable: false),
                     Password = table.Column<string>(type: "text", nullable: false),
-                    IdRol = table.Column<int>(type: "integer", nullable: false),
                     RolId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
@@ -118,7 +101,6 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    IdUsuario = table.Column<int>(type: "integer", nullable: false),
                     Fecha = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     Cupo = table.Column<int>(type: "integer", nullable: false),
                     Link = table.Column<string>(type: "text", nullable: false),
@@ -134,6 +116,32 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Asistencias",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Documento = table.Column<string>(type: "text", nullable: false),
+                    Asistio = table.Column<bool>(type: "boolean", nullable: false),
+                    SalaId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Asistencias", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Asistencias_Salas_SalaId",
+                        column: x => x.SalaId,
+                        principalTable: "Salas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Asistencias_SalaId",
+                table: "Asistencias",
+                column: "SalaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Infracciones_InfractorId",

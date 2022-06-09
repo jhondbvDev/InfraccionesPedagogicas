@@ -13,6 +13,7 @@ namespace InfraccionesPedagogicas.Core.Entities
         public int Cupo { get; set; }
         public string Link { get; set; }
 
-        public Usuario Usuario { get; set; }
+        public int UsuarioId { get; set; }
+        public virtual Usuario Usuario { get; set; }
     }
 }

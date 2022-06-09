@@ -13,6 +13,8 @@ namespace InfraccionesPedagogicas.Core.Entities
         public string Email { get; set; }
         public string Password { get; set; }
 
-        public Rol Rol { get; set; }    
+        public virtual Rol Rol { get; set; }   
+        
+        public virtual ICollection<Sala> Salas { get; set; }
     }
 }
