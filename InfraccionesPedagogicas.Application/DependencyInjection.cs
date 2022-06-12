@@ -8,8 +8,9 @@ namespace InfraccionesPedagogicas.Application
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            services.AddScoped<ISalaService, SalaService>();
-            services.AddScoped<IDatosInfractorService, DatosInfractorService>();
+            services.AddScoped<ISalaService, SalaService>()
+                    .AddScoped<IDatosInfractorService, DatosInfractorService>()
+                    .AddScoped<IInfraccionService, InfraccionService>();
             return services;
         }
     }

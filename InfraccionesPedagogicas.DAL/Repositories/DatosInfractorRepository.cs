@@ -13,7 +13,7 @@ namespace InfraccionesPedagogicas.Infrastructure.Repositories
 
         public async Task<DatosInfractor> GetByDocumentoInfractor(string documento)
         {
-            return await _entities.Where(e => e.Documento == documento).FirstOrDefaultAsync();
+            return await _entities.Where(e => e.Documento.Equals(documento)).FirstOrDefaultAsync();
         }
     }
 }

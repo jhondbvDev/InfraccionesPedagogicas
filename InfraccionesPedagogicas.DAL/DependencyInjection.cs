@@ -13,12 +13,13 @@ namespace InfraccionesPedagogicas.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services , IConfiguration configuration)
         {
             services.AddDbContext<InfraccionesDbContext>(options =>
-            options.UseNpgsql(configuration.GetConnectionString("PostgresSQLConnection"),
-            b => b.MigrationsAssembly(typeof(InfraccionesDbContext).Assembly.FullName)), ServiceLifetime.Transient);
+                    options.UseNpgsql(configuration.GetConnectionString("PostgresSQLConnection"),
+                    b => b.MigrationsAssembly(typeof(InfraccionesDbContext).Assembly.FullName)), ServiceLifetime.Transient);
 
-            services.AddScoped<IInfraccionesDbContext>(provider => provider.GetService<InfraccionesDbContext>());
-            services.AddScoped<ISalaRepository, SalaRepository>();
-            services.AddScoped<IDatosInfractorRepository, DatosInfractorRepository>();
+            services.AddScoped<IInfraccionesDbContext>(provider => provider.GetService<InfraccionesDbContext>())
+                    .AddScoped<ISalaRepository, SalaRepository>()
+                    .AddScoped<IDatosInfractorRepository, DatosInfractorRepository>()
+                    .AddScoped<IInfraccionRepository, InfraccionRepository>();
 
             return services;
         }

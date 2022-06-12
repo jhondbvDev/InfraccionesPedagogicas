@@ -5,7 +5,6 @@ namespace InfraccionesPedagogicas.Core.Entities
 {
     public class Infractor: BaseEntity<string>
     {
-        
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         [StringLength(15)]
