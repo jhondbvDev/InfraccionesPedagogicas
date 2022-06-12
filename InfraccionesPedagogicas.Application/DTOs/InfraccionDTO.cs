@@ -8,5 +8,7 @@ namespace InfraccionesPedagogicas.Application.DTOs
         public string NumeroInfraccion { get; set; }
         [JsonProperty("fecha")]
         public DateTime Fecha { get; set; }
+        [JsonProperty("codigoInfraccion")]
+        public string CodigoInfraccion { get; set; }
     }
 }
