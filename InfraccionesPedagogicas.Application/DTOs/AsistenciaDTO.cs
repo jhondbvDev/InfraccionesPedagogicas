@@ -4,6 +4,8 @@ namespace InfraccionesPedagogicas.Application.DTOs
 {
     public  class AsistenciaDTO
     {
+        [JsonProperty("asistenciaId")]
+        public int Id { get; set; }
         [JsonProperty("documento")]
         public string InfractorId { get; set; }
         [JsonProperty("asistio")]
