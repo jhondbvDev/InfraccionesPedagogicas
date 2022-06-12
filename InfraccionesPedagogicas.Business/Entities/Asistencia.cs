@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace InfraccionesPedagogicas.Core.Entities
+﻿namespace InfraccionesPedagogicas.Core.Entities
 {
     public class Asistencia:BaseEntity<int>
     {
- 
-        public string Documento { get; set; }
+        public string InfractorId { get; set; }
+        public virtual Infractor Infractor { get; set; }
         public bool Asistio { get; set; }
+        public int SalaId { get; set; }
         public virtual Sala Sala { get; set; }
-
-
     }
 }

@@ -124,7 +124,7 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Documento = table.Column<string>(type: "text", nullable: false),
-                    Asistio = table.Column<bool>(type: "boolean", nullable: false),
+                    Asistio = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
                     SalaId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>

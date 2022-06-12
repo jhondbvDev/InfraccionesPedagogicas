@@ -3,6 +3,7 @@ using System;
 using InfraccionesPedagogicas.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace InfraccionesPedagogicas.Infrastructure.Migrations
 {
     [DbContext(typeof(InfraccionesDbContext))]
-    partial class InfraccionesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220612202430_add lazy reference to Infractor on DatosInfractor")]
+    partial class addlazyreferencetoInfractoronDatosInfractor
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

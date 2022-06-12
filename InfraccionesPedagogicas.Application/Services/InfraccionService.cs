@@ -13,9 +13,9 @@ namespace InfraccionesPedagogicas.Application.Services
             _infraccionRepository = infraccionRepository;
         }
 
-        public async Task<IEnumerable<Infraccion>> GetByDocumentoInfractor(string documento)
+        public async Task<IEnumerable<Infraccion>> GetByInfractorId(string id)
         {
-            return await _infraccionRepository.GetByDocumentoInfractor(documento);
+            return await _infraccionRepository.GetByInfractorId(id);
         }
 
         #region No implementados

@@ -20,7 +20,7 @@ namespace InfraccionesPedagogicas.Application.DTOs
         [JsonProperty("celular")]
         public string Celular { get; set; }
         [JsonProperty("documento")]
-        public string Documento { get; set; }
+        public string InfractorId { get; set; }
         [JsonProperty("direccion")]
         public string Direccion { get; set; }
         [JsonProperty("email")]
@@ -33,7 +33,7 @@ namespace InfraccionesPedagogicas.Application.DTOs
         [JsonProperty("celular")]
         public string Celular { get; set; }
         [JsonProperty("documento")]
-        public string Documento { get; set; }
+        public string InfractorId { get; set; }
         [JsonProperty("direccion")]
         public string Direccion { get; set; }
         [JsonProperty("email")]

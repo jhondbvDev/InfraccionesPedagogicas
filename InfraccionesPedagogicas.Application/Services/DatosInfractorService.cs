@@ -18,14 +18,14 @@ namespace InfraccionesPedagogicas.Application.Services
             await _datosInfractorRepository.Add(entity);
         }
 
-        public async Task<DatosInfractor> GetByDocumentoInfractor(string documento)
+        public async Task<DatosInfractor> GetByInfractorId(string id)
         {
-            return await _datosInfractorRepository.GetByDocumentoInfractor(documento);
+            return await _datosInfractorRepository.GetByInfractorId(id);
         }
 
         public async Task<bool> Update(DatosInfractor entity)
         {
-            var datosInfractorOld = await _datosInfractorRepository.GetByDocumentoInfractor(entity.Documento);
+            var datosInfractorOld = await _datosInfractorRepository.GetByInfractorId(entity.InfractorId);
 
             if (datosInfractorOld != null)
             {

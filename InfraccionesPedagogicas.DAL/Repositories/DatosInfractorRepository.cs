@@ -11,9 +11,9 @@ namespace InfraccionesPedagogicas.Infrastructure.Repositories
         {
         }
 
-        public async Task<DatosInfractor> GetByDocumentoInfractor(string documento)
+        public async Task<DatosInfractor> GetByInfractorId(string id)
         {
-            return await _entities.Where(e => e.Documento.Equals(documento)).FirstOrDefaultAsync();
+            return await _entities.Where(e => e.InfractorId.Equals(id)).FirstOrDefaultAsync();
         }
     }
 }

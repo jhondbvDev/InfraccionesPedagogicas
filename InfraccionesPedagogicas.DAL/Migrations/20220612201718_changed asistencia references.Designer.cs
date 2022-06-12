@@ -3,6 +3,7 @@ using System;
 using InfraccionesPedagogicas.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace InfraccionesPedagogicas.Infrastructure.Migrations
 {
     [DbContext(typeof(InfraccionesDbContext))]
-    partial class InfraccionesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220612201718_changed asistencia references")]
+    partial class changedasistenciareferences
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -65,21 +67,19 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Email")
+                    b.Property<string>("Documento")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("InfractorId")
+                    b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("character varying(15)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Telefono")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("InfractorId");
 
                     b.ToTable("DatosInfractor");
                 });
@@ -221,17 +221,6 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
                     b.Navigation("Infractor");
 
                     b.Navigation("Sala");
-                });
-
-            modelBuilder.Entity("InfraccionesPedagogicas.Core.Entities.DatosInfractor", b =>
-                {
-                    b.HasOne("InfraccionesPedagogicas.Core.Entities.Infractor", "Infractor")
-                        .WithMany()
-                        .HasForeignKey("InfractorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Infractor");
                 });
 
             modelBuilder.Entity("InfraccionesPedagogicas.Core.Entities.Infraccion", b =>

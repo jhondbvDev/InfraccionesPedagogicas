@@ -24,10 +24,10 @@ namespace InfraccionesPedagogicas.API.Controllers
             var salasDto = _mapper.Map<List<SalaDTO>>(salas);
             return Ok(salasDto);
         }
-        [HttpGet("{Id}")]
-        public async Task<IActionResult> GetSala(int Id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetSala(int id)
         {
-            var sala = await _salaService.GetById(Id);
+            var sala = await _salaService.GetById(id);
             var salaDTO = _mapper.Map<SalaDTO>(sala);
             return Ok(salaDTO);
         }

@@ -19,10 +19,10 @@ namespace InfraccionesPedagogicas.API.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("{Documento}")]
-        public async Task<IActionResult> GetDatosInfractor(string Documento)
+        [HttpGet("{infractorId}")]
+        public async Task<IActionResult> GetDatosInfractor(string infractorId)
         {
-            var datosInfractor = await _datosInfractorService.GetByDocumentoInfractor(Documento);
+            var datosInfractor = await _datosInfractorService.GetByInfractorId(infractorId);
             var datosInfractorDto = _mapper.Map<DatosInfractorDTO>(datosInfractor);
             return Ok(datosInfractorDto);
         }
