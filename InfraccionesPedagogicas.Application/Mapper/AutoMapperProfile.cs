@@ -1,11 +1,6 @@
 ﻿using AutoMapper;
 using InfraccionesPedagogicas.Application.DTOs;
 using InfraccionesPedagogicas.Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InfraccionesPedagogicas.Application.Mapper
 {
@@ -17,6 +12,9 @@ namespace InfraccionesPedagogicas.Application.Mapper
             CreateMap<Sala, UpdateSalaDTO>().ReverseMap();
             CreateMap<Sala, SalaDTO>().ReverseMap();
 
+            CreateMap<DatosInfractor, CreateDatosInfractorDTO>().ReverseMap();
+            CreateMap<DatosInfractor, UpdateDatosInfractorDTO>().ReverseMap();
+            CreateMap<DatosInfractor, DatosInfractorDTO>().ReverseMap();
         }
     }
 }

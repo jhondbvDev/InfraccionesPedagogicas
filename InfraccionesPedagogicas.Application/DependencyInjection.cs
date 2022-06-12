@@ -1,11 +1,6 @@
 ﻿using InfraccionesPedagogicas.Application.Interfaces.Services;
 using InfraccionesPedagogicas.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InfraccionesPedagogicas.Application
 {
@@ -13,7 +8,8 @@ namespace InfraccionesPedagogicas.Application
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            services.AddScoped<ISalaService,SalaService>();
+            services.AddScoped<ISalaService, SalaService>();
+            services.AddScoped<IDatosInfractorService, DatosInfractorService>();
             return services;
         }
     }

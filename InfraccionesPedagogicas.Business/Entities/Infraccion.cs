@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace InfraccionesPedagogicas.Core.Entities
+﻿namespace InfraccionesPedagogicas.Core.Entities
 {
-    public class Infraccion: BaseEntity<int>
+    public class Infraccion: BaseEntity<int> 
     {
-
         public string NumeroInfraccion { get; set; }
         public DateTime Fecha { get; set; }
-        public virtual Infractor Infractor { get; set; }    
+        public string InfractorId { get; set; }    
     }
 }

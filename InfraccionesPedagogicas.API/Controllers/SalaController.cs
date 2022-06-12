@@ -28,7 +28,8 @@ namespace InfraccionesPedagogicas.API.Controllers
         public async Task<IActionResult> GetSala(int Id)
         {
             var sala = await _salaService.GetById(Id);
-            return Ok(sala);
+            var salaDTO = _mapper.Map<SalaDTO>(sala);
+            return Ok(salaDTO);
         }
         [HttpPost]
         public async Task<IActionResult> CreateSala(CreateSalaDTO dto)
@@ -49,7 +50,6 @@ namespace InfraccionesPedagogicas.API.Controllers
         [HttpDelete]
         public async Task<IActionResult> DeleteSala(int id)
         {
-            
             var result = await _salaService.Delete(id);
             return Ok(result);
         }

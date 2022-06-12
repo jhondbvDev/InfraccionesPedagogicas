@@ -5,11 +5,6 @@ using InfraccionesPedagogicas.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InfraccionesPedagogicas.Infrastructure
 {
@@ -23,6 +18,7 @@ namespace InfraccionesPedagogicas.Infrastructure
 
             services.AddScoped<IInfraccionesDbContext>(provider => provider.GetService<InfraccionesDbContext>());
             services.AddScoped<ISalaRepository, SalaRepository>();
+            services.AddScoped<IDatosInfractorRepository, DatosInfractorRepository>();
 
             return services;
         }
