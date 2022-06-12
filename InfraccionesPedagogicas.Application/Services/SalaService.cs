@@ -38,7 +38,6 @@ namespace InfraccionesPedagogicas.Application.Services
 
             if (salaOld != null)
             {
-
                 salaOld.Fecha = entity.Fecha;
                 salaOld.Link = entity.Link;
                 salaOld.Cupo = entity.Cupo;

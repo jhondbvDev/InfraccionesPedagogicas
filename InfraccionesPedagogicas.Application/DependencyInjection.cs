@@ -10,7 +10,8 @@ namespace InfraccionesPedagogicas.Application
         {
             services.AddScoped<ISalaService, SalaService>()
                     .AddScoped<IDatosInfractorService, DatosInfractorService>()
-                    .AddScoped<IInfraccionService, InfraccionService>();
+                    .AddScoped<IInfraccionService, InfraccionService>()
+                    .AddScoped<IAsistenciaService, AsistenciaService>();
             return services;
         }
     }

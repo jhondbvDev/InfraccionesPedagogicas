@@ -19,7 +19,8 @@ namespace InfraccionesPedagogicas.Infrastructure
             services.AddScoped<IInfraccionesDbContext>(provider => provider.GetService<InfraccionesDbContext>())
                     .AddScoped<ISalaRepository, SalaRepository>()
                     .AddScoped<IDatosInfractorRepository, DatosInfractorRepository>()
-                    .AddScoped<IInfraccionRepository, InfraccionRepository>();
+                    .AddScoped<IInfraccionRepository, InfraccionRepository>()
+                    .AddScoped<IAsistenciaRepository, AsistenciaRepository>();
 
             return services;
         }

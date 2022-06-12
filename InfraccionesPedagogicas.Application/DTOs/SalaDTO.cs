@@ -4,6 +4,8 @@ namespace InfraccionesPedagogicas.Application.DTOs
 {
     public class SalaDTO
     {
+        [JsonProperty("salaId")]
+        public int Id { get; set; }
         [JsonProperty("fecha")]
         public DateTime Fecha { get; set; }
         [JsonProperty("cupo")]
@@ -26,6 +28,8 @@ namespace InfraccionesPedagogicas.Application.DTOs
     }
     public class UpdateSalaDTO
     {
+        [JsonProperty("salaId")]
+        public int Id { get; set; }
         [JsonProperty("fecha")]
         public DateTime Fecha { get; set; }
         [JsonProperty("cupo")]

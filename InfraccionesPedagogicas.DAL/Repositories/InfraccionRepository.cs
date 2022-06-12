@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace InfraccionesPedagogicas.Infrastructure.Repositories
 {
-    internal class InfraccionRepository : BaseRepository<Infraccion, int>, IInfraccionRepository
+    public class InfraccionRepository : BaseRepository<Infraccion, int>, IInfraccionRepository
     {
         public InfraccionRepository(InfraccionesDbContext context) : base(context)
         {
