@@ -1,25 +1,29 @@
 ﻿using InfraccionesPedagogicas.Application.Interfaces;
 using InfraccionesPedagogicas.Application.Interfaces.Repositories;
+using InfraccionesPedagogicas.Application.Interfaces.Services;
+using InfraccionesPedagogicas.Application.Services;
+using InfraccionesPedagogicas.BackgroundLoader.Models;
 using InfraccionesPedagogicas.Infrastructure.Data;
 using InfraccionesPedagogicas.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 
-namespace InfraccionesPedagogicas.Infrastructure
+namespace InfraccionesPedagogicas.BackgroundLoader
 {
     public static class DependencyInjection
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services , IConfiguration configuration)
         {
+            var loadPath = configuration.GetSection("LoadDirectory").Get<LoadPath>();
+
             return services.AddDbContext<InfraccionesDbContext>(options =>
                     options.UseNpgsql(configuration.GetConnectionString("PostgresSQLConnection"),
                     b => b.MigrationsAssembly(typeof(InfraccionesDbContext).Assembly.FullName)), ServiceLifetime.Transient)
-                    .AddScoped<IInfraccionesDbContext>(provider => provider.GetService<InfraccionesDbContext>())
-                    .AddScoped<ISalaRepository, SalaRepository>()
-                    .AddScoped<IDatosInfractorRepository, DatosInfractorRepository>()
+                    .AddScoped<IInfraccionesDbContext, InfraccionesDbContext>()
                     .AddScoped<IInfraccionRepository, InfraccionRepository>()
-                    .AddScoped<IAsistenciaRepository, AsistenciaRepository>();
+                    .AddScoped<IInfractorRepository, InfractorRepository>()
+                    .AddScoped<IInfraccionService, InfraccionService>()
+                    .AddScoped<IInfractorService, InfractorService>()
+                    .AddSingleton(loadPath);
         }
     }
 }
