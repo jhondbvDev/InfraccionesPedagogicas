@@ -1,5 +1,4 @@
 using InfraccionesPedagogicas.Application.Interfaces.Services;
-using InfraccionesPedagogicas.Application.Services;
 using InfraccionesPedagogicas.BackgroundLoader.Models;
 using InfraccionesPedagogicas.Core.Entities;
 using OfficeOpenXml;
@@ -76,13 +75,13 @@ namespace InfraccionesPedagogicas.BackgroundLoader
 
                         if (listaInfractores.Count > 0)
                         {
-                            //await infractorService.BulkDeleteOldRecords(listaInfractores);
-                            //await infractorService.BulkAdd(listaInfractores);
+                            await infractorService.BulkDeleteOldRecords(listaInfractores);
+                            await infractorService.BulkAdd(listaInfractores);
                         }
 
                         if (listaInfracciones.Count > 0)
                         {
-                            //await infraccionService.BulkAdd(listaInfracciones);
+                            await infraccionService.BulkAdd(listaInfracciones);
                         }
                     }
 
