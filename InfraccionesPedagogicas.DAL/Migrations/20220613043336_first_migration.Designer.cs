@@ -3,6 +3,7 @@ using System;
 using InfraccionesPedagogicas.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace InfraccionesPedagogicas.Infrastructure.Migrations
 {
     [DbContext(typeof(InfraccionesDbContext))]
-    partial class InfraccionesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220613043336_first_migration")]
+    partial class first_migration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -254,20 +256,6 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
                         .HasDatabaseName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "4b358884-cb8c-43c8-a6e5-77354b6869c6",
-                            ConcurrencyStamp = "c2497a9f-ecbc-41d6-9c19-9037e3520b88",
-                            Name = "TMB"
-                        },
-                        new
-                        {
-                            Id = "e141c43f-2e6c-441a-8985-8982cc57e72a",
-                            ConcurrencyStamp = "9f70a4b4-161f-46db-a338-11d3cdcce888",
-                            Name = "SM"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
