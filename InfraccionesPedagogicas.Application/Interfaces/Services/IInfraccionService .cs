@@ -4,6 +4,7 @@ namespace InfraccionesPedagogicas.Application.Interfaces.Services
 {
     public interface IInfraccionService : IBaseService<Infraccion, int>
     {
-        public Task<IEnumerable<Infraccion>> GetByInfractorId(string documento);
+        public Task BulkAdd(IEnumerable<Infraccion> infracciones);
+        public Task<IEnumerable<Infraccion>> GetByInfractorId(string id);
     }
 }

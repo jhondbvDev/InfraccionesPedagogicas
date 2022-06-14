@@ -11,10 +11,12 @@ namespace InfraccionesPedagogicas.API.Controllers
     public class AsistenciaController : ControllerBase
     {
         private readonly IAsistenciaService _asistenciaService;
+        private readonly IEmailService _emailService;
         private readonly IMapper _mapper;
-        public AsistenciaController(IAsistenciaService asistenciaService, IMapper mapper)
+        public AsistenciaController(IAsistenciaService asistenciaService, IEmailService emailService, IMapper mapper)
         {
             _asistenciaService = asistenciaService;
+            _emailService = emailService;
             _mapper = mapper;
         }
         [HttpGet]
@@ -36,6 +38,9 @@ namespace InfraccionesPedagogicas.API.Controllers
         {
             var sala = _mapper.Map<Asistencia>(dto);
             await _asistenciaService.Add(sala);
+
+            await _emailService.SendConfirmationEmail(null);
+
             return Ok();
         }
 

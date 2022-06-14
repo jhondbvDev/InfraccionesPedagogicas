@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EPPlus" Version="6.0.5" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\InfraccionesPedagogicas.Application\InfraccionesPedagogicas.Application.csproj" />
+    <ProjectReference Include="..\InfraccionesPedagogicas.Business\InfraccionesPedagogicas.Core.csproj" />
+    <ProjectReference Include="..\InfraccionesPedagogicas.DAL\InfraccionesPedagogicas.Infrastructure.csproj" />
   </ItemGroup>
 </Project>

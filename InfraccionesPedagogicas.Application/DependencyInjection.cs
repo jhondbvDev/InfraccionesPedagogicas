@@ -10,9 +10,10 @@ namespace InfraccionesPedagogicas.Application
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            services.AddScoped<ISalaService, SalaService>()
+            return services.AddScoped<ISalaService, SalaService>()
                     .AddScoped<IDatosInfractorService, DatosInfractorService>()
                     .AddScoped<IInfraccionService, InfraccionService>()
+                    .AddScoped<IEmailService, EmailService>()
                     .AddScoped<IAsistenciaService, AsistenciaService>();
 
             return services;

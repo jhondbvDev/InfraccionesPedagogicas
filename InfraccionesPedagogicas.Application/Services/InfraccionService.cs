@@ -13,6 +13,11 @@ namespace InfraccionesPedagogicas.Application.Services
             _infraccionRepository = infraccionRepository;
         }
 
+        public async Task BulkAdd(IEnumerable<Infraccion> infracciones)
+        {
+            await _infraccionRepository.BulkAdd(infracciones);
+        }
+
         public async Task<IEnumerable<Infraccion>> GetByInfractorId(string id)
         {
             return await _infraccionRepository.GetByInfractorId(id);

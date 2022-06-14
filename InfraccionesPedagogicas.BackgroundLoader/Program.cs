@@ -1,9 +1,10 @@
 using InfraccionesPedagogicas.BackgroundLoader;
 
 IHost host = Host.CreateDefaultBuilder(args)
-    .ConfigureServices(services =>
+    .ConfigureServices((hostContext, services) =>
     {
-        services.AddHostedService<Worker>();
+        services.AddHostedService<Worker>()
+                .AddInfrastructure(hostContext.Configuration);
     })
     .Build();
 

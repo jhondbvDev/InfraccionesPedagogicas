@@ -17,7 +17,7 @@ namespace InfraccionesPedagogicas.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services , IConfiguration configuration)
         {
-            services.AddDbContext<InfraccionesDbContext>(options =>
+            return services.AddDbContext<InfraccionesDbContext>(options =>
                     options.UseNpgsql(configuration.GetConnectionString("PostgresSQLConnection"),
                     b => b.MigrationsAssembly(typeof(InfraccionesDbContext).Assembly.FullName)), ServiceLifetime.Transient);
 
@@ -55,6 +55,7 @@ namespace InfraccionesPedagogicas.Infrastructure
 
 
             return services;
+                    .AddScoped<IAsistenciaRepository, AsistenciaRepository>();
         }
     }
 }
