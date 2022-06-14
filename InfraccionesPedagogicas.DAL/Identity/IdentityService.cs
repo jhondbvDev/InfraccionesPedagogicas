@@ -65,8 +65,18 @@ namespace InfraccionesPedagogicas.Infrastructure.Services
             {
                 throw new BusinessException(result.Errors);
             }
+            IdentityResult addUserRole;
+            try
+            {
+                string role = roles.FirstOrDefault().ToString();
+                 addUserRole = await _userManager.AddToRoleAsync(user,role );
+            }
+            catch (Exception ex)
+            {
 
-            var addUserRole = await _userManager.AddToRolesAsync(user, roles);
+                throw new BusinessException(ex.Message);
+            }
+           
             if (!addUserRole.Succeeded)
             {
                 throw new BusinessException(addUserRole.Errors);

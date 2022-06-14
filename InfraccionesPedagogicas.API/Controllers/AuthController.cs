@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 namespace InfraccionesPedagogicas.API.Controllers
 {
     [Route("api/[controller]")]
+    [ApiController]
     public class AuthController:ControllerBase
     {
         private readonly IIdentityService _identityService;
@@ -68,7 +69,7 @@ namespace InfraccionesPedagogicas.API.Controllers
         {
             if(await _identityService.SigninUserAsync(userName, password))
             {
-                var user = await _identityService.GetUserDetailsAsync(userName);
+                var user = await _identityService.GetUserDetailsByUserNameAsync(userName);
                 var token =  _tokenService.GenerateJWTToken(user.userId, user.UserName, user.roles);
                 return Ok(token);
             }

@@ -23,6 +23,9 @@ namespace InfraccionesPedagogicas.Infrastructure.Data
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(InfraccionesDbContext).Assembly);
+
+
+            //Seed Data
             modelBuilder.Entity<IdentityRole>().HasData(
                 new Microsoft.AspNetCore.Identity.IdentityRole("TMB"),
                 new Microsoft.AspNetCore.Identity.IdentityRole("SM")
