@@ -32,4 +32,8 @@
     <ProjectReference Include="..\InfraccionesPedagogicas.Application\InfraccionesPedagogicas.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+  </ItemGroup>
+
 </Project>

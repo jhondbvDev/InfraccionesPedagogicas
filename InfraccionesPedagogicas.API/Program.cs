@@ -1,6 +1,5 @@
 using InfraccionesPedagogicas.Application;
 using InfraccionesPedagogicas.Infrastructure;
-using InfraccionesPedagogicas.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -11,8 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddApplication();
-builder.Services.AddAuthorization();
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddAuthorization();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddSwaggerGen();
 //JWT authentication
@@ -51,7 +50,5 @@ if (app.Environment.IsDevelopment())
 app.UseAuthorization();
 
 app.MapControllers();
-
-//app.SeedData();
 
 app.Run();
