@@ -1,5 +1,5 @@
 using InfraccionesPedagogicas.Application.Interfaces.Services;
-using InfraccionesPedagogicas.BackgroundLoader.Models;
+using InfraccionesPedagogicas.Application.Models;
 using InfraccionesPedagogicas.Core.Entities;
 using OfficeOpenXml;
 

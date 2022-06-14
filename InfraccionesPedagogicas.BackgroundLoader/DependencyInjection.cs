@@ -1,8 +1,8 @@
 ﻿using InfraccionesPedagogicas.Application.Interfaces;
 using InfraccionesPedagogicas.Application.Interfaces.Repositories;
 using InfraccionesPedagogicas.Application.Interfaces.Services;
+using InfraccionesPedagogicas.Application.Models;
 using InfraccionesPedagogicas.Application.Services;
-using InfraccionesPedagogicas.BackgroundLoader.Models;
 using InfraccionesPedagogicas.Infrastructure.Data;
 using InfraccionesPedagogicas.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;

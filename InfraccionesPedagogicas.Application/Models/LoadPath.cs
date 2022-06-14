@@ -1,4 +1,4 @@
-﻿namespace InfraccionesPedagogicas.BackgroundLoader.Models
+﻿namespace InfraccionesPedagogicas.Application.Models
 {
     public class LoadPath
     {
