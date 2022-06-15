@@ -24,12 +24,20 @@ namespace InfraccionesPedagogicas.Infrastructure.Data
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(InfraccionesDbContext).Assembly);
 
+            SeedRoles(modelBuilder);
+        }
 
+        private void SeedRoles(ModelBuilder modelBuilder)
+        {
+            IdentityRole tmb = new IdentityRole();
+            tmb.Name = "TMB";
+            tmb.NormalizedName = "TMB";
+
+            IdentityRole sm = new IdentityRole();
+            sm.Name = "SM";
+            sm.NormalizedName = "SM";
             //Seed Data
-            modelBuilder.Entity<IdentityRole>().HasData(
-                new Microsoft.AspNetCore.Identity.IdentityRole("TMB"),
-                new Microsoft.AspNetCore.Identity.IdentityRole("SM")
-                );
+            modelBuilder.Entity<IdentityRole>().HasData(tmb, sm);
         }
     }
 }

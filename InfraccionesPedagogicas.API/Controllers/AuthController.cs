@@ -26,6 +26,7 @@ namespace InfraccionesPedagogicas.API.Controllers
 
         [HttpPost]
         [Route("registerUser")]
+        
         public async Task<IActionResult> RegisterUser(UserDTO dto)
         {
             try
@@ -84,7 +85,7 @@ namespace InfraccionesPedagogicas.API.Controllers
         }
         private bool PasswordContainsRequiredNonAlphanumericCharacters(string password)
         {
-            return password.Contains('!') || password.Contains('@') || password.Contains('#') || password.Contains('?') || password.Contains(']');
+            return password.Contains('!') || password.Contains('.') || password.Contains('@') || password.Contains('#') || password.Contains('?') || password.Contains(']');
         }
     }
 }
