@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-datos-infractor',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DatosInfractorComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router : Router) { }
 
   ngOnInit() {
   }
 
+  confirmData() {
+    this.router.navigateByUrl("infractor/dashboard");
+  }
+
+  cancel() {
+    this.router.navigateByUrl("infractor/login");
+  }
 }
