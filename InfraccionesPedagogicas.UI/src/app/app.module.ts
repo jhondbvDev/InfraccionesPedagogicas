@@ -8,6 +8,8 @@ import { SecureMasterComponent } from './layout/secure/master/master.component';
 import { LoginInfractorComponent } from './public/login-infractor/login-infractor.component';
 import { LoginFuncionarioComponent } from './public/login-funcionario/login-funcionario.component';
 import { DashboardComponent } from './secure/dashboard/dashboard.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatToolbarModule, MatIconModule, MatTooltipModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,11 @@ import { DashboardComponent } from './secure/dashboard/dashboard.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
