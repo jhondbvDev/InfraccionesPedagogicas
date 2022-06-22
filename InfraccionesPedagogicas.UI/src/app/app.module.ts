@@ -9,7 +9,7 @@ import { LoginInfractorComponent } from './public/login-infractor/login-infracto
 import { LoginFuncionarioComponent } from './public/login-funcionario/login-funcionario.component';
 import { DashboardComponent } from './secure/dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule, MatIconModule, MatTooltipModule } from '@angular/material';
+import { MatToolbarModule, MatIconModule, MatTooltipModule, MatCardModule, MatButtonModule, MatInputModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,10 @@ import { MatToolbarModule, MatIconModule, MatTooltipModule } from '@angular/mate
     BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatCardModule,
+    MatButtonModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
