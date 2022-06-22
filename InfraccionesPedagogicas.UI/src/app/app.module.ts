@@ -7,9 +7,10 @@ import { PublicMasterComponent } from './layout/public/master/master.component';
 import { SecureMasterComponent } from './layout/secure/master/master.component';
 import { LoginInfractorComponent } from './public/login-infractor/login-infractor.component';
 import { LoginFuncionarioComponent } from './public/login-funcionario/login-funcionario.component';
-import { DashboardComponent } from './secure/dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule, MatIconModule, MatTooltipModule, MatCardModule, MatButtonModule, MatInputModule } from '@angular/material';
+import { DashboardInfractorComponent } from './secure/dashboard-infractor/dashboard-infractor.component';
+import { DashboardFuncionarioComponent } from './secure/dashboard-funcionario/dashboard-funcionario.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MatToolbarModule, MatIconModule, MatTooltipModule, MatCardModule, MatBu
     SecureMasterComponent,
     LoginInfractorComponent,
     LoginFuncionarioComponent,
-    DashboardComponent
+    DashboardInfractorComponent,
+    DashboardFuncionarioComponent,
   ],
   imports: [
     BrowserModule,
