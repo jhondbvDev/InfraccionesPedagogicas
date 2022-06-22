@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule, MatIconModule, MatTooltipModule, MatCardModule, MatButtonModule, MatInputModule } from '@angular/material';
 import { DashboardInfractorComponent } from './secure/dashboard-infractor/dashboard-infractor.component';
 import { DashboardFuncionarioComponent } from './secure/dashboard-funcionario/dashboard-funcionario.component';
+import { DatosInfractorComponent } from './secure/datos-infractor/datos-infractor.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { DashboardFuncionarioComponent } from './secure/dashboard-funcionario/da
     LoginFuncionarioComponent,
     DashboardInfractorComponent,
     DashboardFuncionarioComponent,
+    DatosInfractorComponent,
   ],
   imports: [
     BrowserModule,

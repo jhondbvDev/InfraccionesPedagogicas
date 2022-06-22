@@ -61,3 +61,22 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     padding-bottom: 5px;
   }
 }
+
+.fullButton, .fullInput {
+  width: 100%;
+}
+
+.buttonGroup {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  >.primaryButton {
+    width: 70%;
+  }
+
+  >.secondaryButton {
+    width: 30%;
+  }
+}
+
+
