@@ -10,7 +10,6 @@ import { LoginFuncionarioComponent } from './public/login-funcionario/login-func
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule, MatIconModule, MatTooltipModule, MatCardModule, MatButtonModule, MatInputModule, MatTableModule, MatDialogModule } from '@angular/material';
 import { DashboardInfractorComponent } from './secure/dashboard-infractor/dashboard-infractor.component';
-import { DashboardFuncionarioComponent } from './secure/dashboard-funcionario/dashboard-funcionario.component';
 import { DatosInfractorComponent } from './secure/datos-infractor/datos-infractor.component';
 import { ScheduleConfirmationDialogComponent } from './common/dialogs/schedule-confirmation-dialog/schedule-confirmation-dialog.component';
 import { DashboardTmbComponent } from './secure/dashboard-tmb/dashboard-tmb.component';
@@ -24,7 +23,6 @@ import { DashboardSmComponent } from './secure/dashboard-sm/dashboard-sm.compone
     LoginInfractorComponent,
     LoginFuncionarioComponent,
     DashboardInfractorComponent,
-    DashboardFuncionarioComponent,
     DatosInfractorComponent,
     ScheduleConfirmationDialogComponent,
     DashboardTmbComponent,

@@ -14,6 +14,6 @@ export class LoginFuncionarioComponent implements OnInit {
   }
 
   authenticate() {
-    this.router.navigateByUrl("funcionario/dashboard");
+    this.router.navigateByUrl("sm/dashboard");
   }
 }
