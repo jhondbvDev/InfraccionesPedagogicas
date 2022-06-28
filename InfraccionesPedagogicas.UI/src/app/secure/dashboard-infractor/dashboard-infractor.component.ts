@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { ScheduleConfirmationDialogComponent } from '../../common/dialogs/schedule-confirmation-dialog/schedule-confirmation-dialog.component';
 
-export interface Infracciones {
+export interface Infraccion {
   date: string;
   concept: string;
 }
 
-const DATA: Infracciones[] = [
+const DATA: Infraccion[] = [
   { date: '23/9/2022', concept: 'Infraccion Pedagogica' },
   { date: '27/9/2022', concept: 'Infraccion Pedagogica'}
 ];
