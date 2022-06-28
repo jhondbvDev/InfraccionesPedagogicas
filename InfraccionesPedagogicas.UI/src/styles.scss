@@ -62,7 +62,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   }
 }
 
-.fullButton, .fullInput {
+.full {
   width: 100%;
 }
 
@@ -79,4 +79,17 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   }
 }
 
+.container-row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: stretch;
+    gap: 30px;
+}
+
+.container-col {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
 
