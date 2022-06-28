@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import { ScheduleConfirmationDialogComponent } from '../../common/dialogs/schedule-confirmation-dialog/schedule-confirmation-dialog.component';
 
 export interface Infracciones {
   date: string;
@@ -17,7 +19,7 @@ const DATA: Infracciones[] = [
 })
 export class DashboardInfractorComponent implements OnInit {
 
-  constructor() { }
+  constructor(private matDialog: MatDialog) { }
 
   ngOnInit() {
   }
@@ -25,4 +27,9 @@ export class DashboardInfractorComponent implements OnInit {
   displayedColumns: string[] = ['date', 'concept'];
   dataSource = DATA;
 
+  schedule() {
+    let dialogConfig = new MatDialogConfig();
+    dialogConfig.width = '600px';
+    this.matDialog.open(ScheduleConfirmationDialogComponent, dialogConfig)
+  }
 }
