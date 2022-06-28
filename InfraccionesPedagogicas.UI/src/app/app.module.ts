@@ -13,6 +13,8 @@ import { DashboardInfractorComponent } from './secure/dashboard-infractor/dashbo
 import { DashboardFuncionarioComponent } from './secure/dashboard-funcionario/dashboard-funcionario.component';
 import { DatosInfractorComponent } from './secure/datos-infractor/datos-infractor.component';
 import { ScheduleConfirmationDialogComponent } from './common/dialogs/schedule-confirmation-dialog/schedule-confirmation-dialog.component';
+import { DashboardTmbComponent } from './secure/dashboard-tmb/dashboard-tmb.component';
+import { DashboardSmComponent } from './secure/dashboard-sm/dashboard-sm.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { ScheduleConfirmationDialogComponent } from './common/dialogs/schedule-c
     DashboardFuncionarioComponent,
     DatosInfractorComponent,
     ScheduleConfirmationDialogComponent,
+    DashboardTmbComponent,
+    DashboardSmComponent,
   ],
   imports: [
     BrowserModule,
