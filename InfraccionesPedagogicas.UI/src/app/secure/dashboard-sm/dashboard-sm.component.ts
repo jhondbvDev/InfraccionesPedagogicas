@@ -25,6 +25,6 @@ export class DashboardSmComponent implements OnInit {
   ngOnInit() {
   }
 
-  displayedColumns: string[] = ['infNumber', 'date', 'link' , 'slots' , 'teacher'];
+  displayedColumns: string[] = ['infNumber', 'date', 'link', 'slots', 'teacher', 'detailsAction', 'editAction'];
   dataSource = DATA;
 }
