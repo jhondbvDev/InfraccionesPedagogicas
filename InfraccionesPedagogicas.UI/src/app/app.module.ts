@@ -27,6 +27,7 @@ import { DashboardTmbComponent } from './secure/dashboard-tmb/dashboard-tmb.comp
 import { DashboardSmComponent } from './secure/dashboard-sm/dashboard-sm.component';
 import { AttendanceCheckingDialogComponent } from './common/dialogs/attendance-checking-dialog/attendance-checking-dialog.component';
 import { RoomCreationDialogComponent } from './common/dialogs/room-creation-dialog/room-creation-dialog.component';
+import { UserCreationDialogComponent } from './common/dialogs/user-creation-dialog/user-creation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { RoomCreationDialogComponent } from './common/dialogs/room-creation-dial
     DashboardSmComponent,
     AttendanceCheckingDialogComponent,
     RoomCreationDialogComponent,
+    UserCreationDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,7 +63,8 @@ import { RoomCreationDialogComponent } from './common/dialogs/room-creation-dial
   entryComponents: [
     ScheduleConfirmationDialogComponent,
     AttendanceCheckingDialogComponent,
-    RoomCreationDialogComponent
+    RoomCreationDialogComponent,
+    UserCreationDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { AttendanceCheckingDialogComponent } from '../../common/dialogs/attendance-checking-dialog/attendance-checking-dialog.component';
+import { UserCreationDialogComponent } from '../../common/dialogs/user-creation-dialog/user-creation-dialog.component';
 
 export interface Sala {
   infNumber: string;
@@ -52,5 +53,13 @@ export class DashboardTmbComponent implements OnInit {
     }
 
     this.matDialog.open(AttendanceCheckingDialogComponent, dialogConfig)
+  }
+
+  addUser() {
+    let dialogConfig = new MatDialogConfig();
+    dialogConfig.width = '600px';
+    dialogConfig.disableClose = false;
+
+    this.matDialog.open(UserCreationDialogComponent, dialogConfig)
   }
 }
