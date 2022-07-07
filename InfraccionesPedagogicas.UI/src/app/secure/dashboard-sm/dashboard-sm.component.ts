@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { AttendanceCheckingDialogComponent } from '../../common/dialogs/attendance-checking-dialog/attendance-checking-dialog.component';
+import { RoomCreationDialogComponent } from '../../common/dialogs/room-creation-dialog/room-creation-dialog.component';
 
 export interface Sala {
   infNumber: string;
@@ -33,11 +34,19 @@ export class DashboardSmComponent implements OnInit {
   checkAttendance() {
     let dialogConfig = new MatDialogConfig();
     dialogConfig.width = '600px';
-    dialogConfig.disableClose = true;
+    dialogConfig.disableClose = false;
     dialogConfig.data = {
       canModify: true
     }
 
     this.matDialog.open(AttendanceCheckingDialogComponent, dialogConfig)
+  }
+
+  addRoom() {
+    let dialogConfig = new MatDialogConfig();
+    dialogConfig.width = '600px';
+    dialogConfig.disableClose = false;
+
+    this.matDialog.open(RoomCreationDialogComponent, dialogConfig)
   }
 }

@@ -46,7 +46,7 @@ export class DashboardTmbComponent implements OnInit {
   checkAttendance() {
     let dialogConfig = new MatDialogConfig();
     dialogConfig.width = '600px';
-    dialogConfig.disableClose = true;
+    dialogConfig.disableClose = false;
     dialogConfig.data = {
       canModify: false
     }
