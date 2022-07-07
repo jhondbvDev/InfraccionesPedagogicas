@@ -30,6 +30,7 @@ export class DashboardInfractorComponent implements OnInit {
   schedule() {
     let dialogConfig = new MatDialogConfig();
     dialogConfig.width = '600px';
+    dialogConfig.disableClose = true;
     this.matDialog.open(ScheduleConfirmationDialogComponent, dialogConfig)
   }
 }
