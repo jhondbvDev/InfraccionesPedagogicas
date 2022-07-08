@@ -28,7 +28,7 @@ import { AttendanceCheckingDialogComponent } from './common/dialogs/attendance-c
 import { RoomCreationDialogComponent } from './common/dialogs/room-creation-dialog/room-creation-dialog.component';
 import { MeetingCalendarComponent } from './user-control/meeting-calendar/meeting-calendar.component';
 import { UserCreationDialogComponent } from './common/dialogs/user-creation-dialog/user-creation-dialog.component';
-
+import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,7 +60,8 @@ import { UserCreationDialogComponent } from './common/dialogs/user-creation-dial
     MatDialogModule,
     MatCheckboxModule,
     MatTabsModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   entryComponents: [
     ScheduleConfirmationDialogComponent,

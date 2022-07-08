@@ -57,7 +57,15 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
     <div class="spacing vertical-3"></div>
+  </mat-card-content>
+</mat-card>
+<div class="spacing vertical-2"></div>
+<mat-card>
+  <mat-card-title>Programar curso</mat-card-title>
+  <mat-card-content  class="containerPadding">
     <!--Calendario-->
+    <app-meeting-calendar [default]="false"></app-meeting-calendar>
     <button mat-raised-button color="primary" class="full" (click)="schedule()">PROGRAMAR</button>
   </mat-card-content>
 </mat-card>
+<div class="spacing vertical-2"></div>
