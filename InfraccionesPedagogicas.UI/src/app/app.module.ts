@@ -8,18 +8,17 @@ import { SecureMasterComponent } from './layout/secure/master/master.component';
 import { LoginInfractorComponent } from './public/login-infractor/login-infractor.component';
 import { LoginFuncionarioComponent } from './public/login-funcionario/login-funcionario.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  MatToolbarModule,
-  MatIconModule,
-  MatTooltipModule,
-  MatCardModule,
-  MatButtonModule,
-  MatInputModule,
-  MatTableModule,
-  MatDialogModule,
-  MatCheckboxModule,
-  MatTabsModule
-} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { DashboardInfractorComponent } from './secure/dashboard-infractor/dashboard-infractor.component';
 import { DatosInfractorComponent } from './secure/datos-infractor/datos-infractor.component';
 import { ScheduleConfirmationDialogComponent } from './common/dialogs/schedule-confirmation-dialog/schedule-confirmation-dialog.component';
@@ -60,7 +59,8 @@ import { UserCreationDialogComponent } from './common/dialogs/user-creation-dial
     MatTableModule,
     MatDialogModule,
     MatCheckboxModule,
-    MatTabsModule
+    MatTabsModule,
+    MatDatepickerModule
   ],
   entryComponents: [
     ScheduleConfirmationDialogComponent,

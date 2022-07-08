@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AttendanceCheckingDialogComponent } from '../../common/dialogs/attendance-checking-dialog/attendance-checking-dialog.component';
 import { UserCreationDialogComponent } from '../../common/dialogs/user-creation-dialog/user-creation-dialog.component';
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ScheduleConfirmationDialogComponent } from '../../common/dialogs/schedule-confirmation-dialog/schedule-confirmation-dialog.component';
 
 export interface Infraccion {
