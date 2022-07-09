@@ -5,19 +5,19 @@
       <div class="spacing vertical-4"></div>
       <h1 class="centered-text">Bienvenido</h1>
       <div class="spacing vertical-3"></div>
-      <form>
+      <form [formGroup]="loginForm">
         <mat-form-field appearance="fill" class="full">
           <mat-label>Email</mat-label>
-          <input matInput type="email" />
+          <input matInput type="email" formControlName="email" />
         </mat-form-field>
       </form>
       <form>
         <mat-form-field appearance="fill" class="full">
           <mat-label>Contraseña</mat-label>
-          <input matInput type="password" />
+          <input matInput type="password" formControlName="password"  autocomplete="off" />
         </mat-form-field>
       </form>
-      <button mat-raised-button color="primary" class="full" (click)="authenticate()">INGRESAR</button>
+      <button mat-raised-button color="primary" class="full" (click)="onLogin(loginForm?.value)">INGRESAR</button>
       <div class="spacing vertical-3"></div>
     </mat-card-content>
   </mat-card>

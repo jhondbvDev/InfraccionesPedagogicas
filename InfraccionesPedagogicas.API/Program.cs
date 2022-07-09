@@ -39,6 +39,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+
     app.UseSwagger();
     app.UseSwaggerUI(options =>
     {
@@ -46,7 +47,14 @@ if (app.Environment.IsDevelopment())
         options.RoutePrefix = string.Empty;
     });
 }
+app.UseHttpsRedirection();
 
+
+app.UseCors(x => x.AllowAnyHeader()
+  .AllowAnyMethod()
+  .WithOrigins("https://localhost:4200"));
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
