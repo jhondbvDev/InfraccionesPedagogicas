@@ -12,19 +12,45 @@ namespace InfraccionesPedagogicas.Infrastructure.Repositories
 
         public async Task BulkAdd(IEnumerable<Infractor> infractores)
         {
-            var infractoresParaInsertar = infractores.Where(infractor => !_entities.Any(e => e.Id.Equals(infractor.Id)));
+            try
+            {
+                //var infractoresParaInsertar = infractores.Where(infractor => !_entities.Any(e => e.Id.Equals(infractor.Id))); codigo Andres
 
-            await _entities.AddRangeAsync(infractoresParaInsertar);
-            await _context.SaveChangesAsync();
+                var infractoresParaInsertar = infractores.Where(infractor => !(_entities.Any(e=>e.Id==infractor.Id)) );
+                infractoresParaInsertar = infractoresParaInsertar.GroupBy(x => x.Id).Select(y=>y.First());//Elimina duplicados
+ 
+               await _entities.AddRangeAsync(infractoresParaInsertar);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex) 
+            {
+
+                throw ex;
+            }
+
         }
 
         public async Task BulkDeleteOldRecords(IEnumerable<Infractor> infractores)
         {
-            var infractoresQueNoEstanEnElArchivoYNoTienenReunionesPendientesEnBaseDeDatos = _entities
-                .Where(e => !infractores.Any(infractor => e.Id.Equals(infractor.Id)) && !e.Asistencias.Any(asistencia => asistencia.Sala.Fecha >= DateTime.Now));
+            try
+            {
+                var excludedIDs = new HashSet<string>(infractores.Select(p => p.Id));
+                DateTime now = DateTime.Now.ToUniversalTime();
+                var test = _entities.Where(infractor => !excludedIDs.Contains(infractor.Id) && infractor.Asistencias.Any(asistencia=>asistencia.Sala.Fecha>=now));
 
-            _context.RemoveRange(infractoresQueNoEstanEnElArchivoYNoTienenReunionesPendientesEnBaseDeDatos);
-            await _context.SaveChangesAsync();
+                //codigo Andres
+                //var infractoresQueNoEstanEnElArchivoYNoTienenReunionesPendientesEnBaseDeDatos = _entities
+                //        .Where(e => !infractores.Any(infractor => e.Id.Equals(infractor.Id)) && !e.Asistencias.Any(asistencia => asistencia.Sala.Fecha >= DateTime.Now));
+
+                _context.RemoveRange(test);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+    
         }
     }
 }

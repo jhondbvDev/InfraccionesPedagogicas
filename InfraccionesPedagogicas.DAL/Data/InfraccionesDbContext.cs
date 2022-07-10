@@ -17,7 +17,7 @@ namespace InfraccionesPedagogicas.Infrastructure.Data
 
         public InfraccionesDbContext(DbContextOptions<InfraccionesDbContext> options) : base(options)
         {
-
+          
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

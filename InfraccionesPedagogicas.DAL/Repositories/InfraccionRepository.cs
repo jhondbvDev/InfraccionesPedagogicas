@@ -13,10 +13,19 @@ namespace InfraccionesPedagogicas.Infrastructure.Repositories
 
         public async Task BulkAdd(IEnumerable<Infraccion> infracciones)
         {
-            var infraccionesParaInsertar = infracciones.Where(infraccion => !_entities.Any(e => e.NumeroInfraccion.Equals(infraccion.NumeroInfraccion)));
+            try
+            {
+                var infraccionesParaInsertar = infracciones.Where(infraccion => !_entities.Any(e => e.NumeroInfraccion.Equals(infraccion.NumeroInfraccion)));
 
-            await _entities.AddRangeAsync(infraccionesParaInsertar);
-            await _context.SaveChangesAsync();
+                await _entities.AddRangeAsync(infraccionesParaInsertar);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        
         }
 
         public async Task<IEnumerable<Infraccion>> GetByInfractorId(string id)

@@ -61,7 +61,7 @@ namespace InfraccionesPedagogicas.BackgroundLoader
                             listaInfracciones.Add(new Infraccion
                             {
                                 NumeroInfraccion = worksheet.Cells[i, 1].Value.ToString(),
-                                Fecha = DateTime.ParseExact(worksheet.Cells[i, 2].Value.ToString(), "dd/MM/yyyy", null),
+                                Fecha = DateTime.ParseExact(worksheet.Cells[i, 2].Value.ToString(), "dd/MM/yyyy",null,System.Globalization.DateTimeStyles.AssumeLocal),
                                 CodigoInfraccion = worksheet.Cells[i, 4].Value.ToString(),
                                 InfractorId = worksheet.Cells[i, 5].Value.ToString()
                             });
