@@ -26,4 +26,11 @@ namespace InfraccionesPedagogicas.Application.DTOs
     public class UpdateUserDTO:UserDTO
     {
     }
+    public class LogInUserDTO
+    {
+        [JsonProperty("username")]
+        public string UserName { get; set; }
+        [JsonProperty("password")]
+        public string Password { get; set; }
+    }
 }

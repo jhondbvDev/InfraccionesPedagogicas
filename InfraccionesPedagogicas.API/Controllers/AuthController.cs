@@ -66,13 +66,13 @@ namespace InfraccionesPedagogicas.API.Controllers
 
         [HttpPost]
         [Route("signIn")]
-        public async Task<IActionResult> SignIn(string userName,string password)
+        public async Task<IActionResult> SignIn(LogInUserDTO userDto)
         {
-            if(await _identityService.SigninUserAsync(userName, password))
+            if(await _identityService.SigninUserAsync(userDto.UserName, userDto.Password))
             {
-                var user = await _identityService.GetUserDetailsByUserNameAsync(userName);
-                var token =  _tokenService.GenerateJWTToken(user.userId, user.UserName, user.roles);
-                return Ok(token);
+                var user = await _identityService.GetUserDetailsByUserNameAsync(userDto.UserName);
+                var token =  _tokenService.GenerateJWTToken(user.userId, user.fullName,user.UserName, user.roles);
+                return Ok(new { access_token= token });
             }
             else
             {

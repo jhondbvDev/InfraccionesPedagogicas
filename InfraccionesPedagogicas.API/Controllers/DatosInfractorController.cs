@@ -27,6 +27,8 @@ namespace InfraccionesPedagogicas.API.Controllers
             return Ok(datosInfractorDto);
         }
 
+
+
         [HttpPost]
         public async Task<IActionResult> CreateSala(CreateDatosInfractorDTO dto)
         {

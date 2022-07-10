@@ -8,6 +8,6 @@ namespace InfraccionesPedagogicas.Application.Interfaces.Services
 {
     public interface ITokenService
     {
-        public  string GenerateJWTToken(string userId, string userName, IList<string> roles );
+        public  string GenerateJWTToken(string userId,string name, string userName, IList<string> roles );
     }
 }

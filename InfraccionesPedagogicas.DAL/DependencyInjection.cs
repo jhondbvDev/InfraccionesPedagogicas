@@ -46,6 +46,7 @@ namespace InfraccionesPedagogicas.Infrastructure
                     .AddScoped<ISalaRepository, SalaRepository>()
                     .AddScoped<IDatosInfractorRepository, DatosInfractorRepository>()
                     .AddScoped<IInfraccionRepository, InfraccionRepository>()
+                    .AddScoped<IInfractorRepository,InfractorRepository>()
                     .AddScoped<IAsistenciaRepository, AsistenciaRepository>()
                     .AddScoped<IIdentityService, IdentityService>()
                     .AddScoped<ITokenService,TokenService>(tokenService => new TokenService(configuration["Authentication:Secretkey"],

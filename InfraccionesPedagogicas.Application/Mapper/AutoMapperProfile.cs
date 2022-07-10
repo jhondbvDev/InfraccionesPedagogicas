@@ -21,6 +21,8 @@ namespace InfraccionesPedagogicas.Application.Mapper
             CreateMap<Asistencia, CreateAsistenciaDTO>().ReverseMap();
             CreateMap<Asistencia, UpdateAsistenciaDTO>().ReverseMap();
             CreateMap<Asistencia, AsistenciaDTO>().ReverseMap();
+
+            CreateMap<Infractor, InfractorDTO>().ReverseMap();
         }
     }
 }

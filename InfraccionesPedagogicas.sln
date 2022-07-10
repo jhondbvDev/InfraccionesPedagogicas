@@ -13,27 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfraccionesPedagogicas.App
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfraccionesPedagogicas.BackgroundLoader", "InfraccionesPedagogicas.BackgroundLoader\InfraccionesPedagogicas.BackgroundLoader.csproj", "{2B7CC5FE-B25D-4357-9DC2-36F5A605AF84}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "InfraccionesPedagogicas.UI", "InfraccionesPedagogicas.UI\", "{81B6815C-845A-46AE-BE2B-8ED41B3E5633}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_51768"
-		Debug.AspNetCompiler.PhysicalPath = "InfraccionesPedagogicas.UI\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51768\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_51768"
-		Release.AspNetCompiler.PhysicalPath = "InfraccionesPedagogicas.UI\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51768\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "51768"
-		SlnRelativePath = "InfraccionesPedagogicas.UI\"
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,10 +39,6 @@ Global
 		{2B7CC5FE-B25D-4357-9DC2-36F5A605AF84}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B7CC5FE-B25D-4357-9DC2-36F5A605AF84}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B7CC5FE-B25D-4357-9DC2-36F5A605AF84}.Release|Any CPU.Build.0 = Release|Any CPU
-		{81B6815C-845A-46AE-BE2B-8ED41B3E5633}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{81B6815C-845A-46AE-BE2B-8ED41B3E5633}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{81B6815C-845A-46AE-BE2B-8ED41B3E5633}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{81B6815C-845A-46AE-BE2B-8ED41B3E5633}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

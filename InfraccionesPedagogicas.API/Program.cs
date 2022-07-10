@@ -7,7 +7,7 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddCors();
 builder.Services.AddControllers();
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
@@ -50,9 +50,14 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 
-app.UseCors(x => x.AllowAnyHeader()
-  .AllowAnyMethod()
-  .WithOrigins("https://localhost:4200"));
+app.UseCors(
+            option =>
+            {
+                option.WithOrigins("http://localhost:4200");
+                option.AllowAnyMethod();
+                option.AllowAnyHeader();
+            }
+        );
 
 app.UseAuthentication();
 app.UseAuthorization();

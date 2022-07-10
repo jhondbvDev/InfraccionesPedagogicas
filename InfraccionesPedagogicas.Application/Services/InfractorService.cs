@@ -1,4 +1,5 @@
-﻿using InfraccionesPedagogicas.Application.Interfaces.Repositories;
+﻿using AutoMapper;
+using InfraccionesPedagogicas.Application.Interfaces.Repositories;
 using InfraccionesPedagogicas.Application.Interfaces.Services;
 using InfraccionesPedagogicas.Core.Entities;
 
@@ -7,10 +8,12 @@ namespace InfraccionesPedagogicas.Application.Services
     public class InfractorService : IInfractorService
     {
         private readonly IInfractorRepository _infractorRepository;
+ 
 
         public InfractorService(IInfractorRepository infractorRepository)
         {
             _infractorRepository = infractorRepository;
+   
         }
 
         public async Task BulkAdd(IEnumerable<Infractor> infractores)
@@ -40,9 +43,9 @@ namespace InfraccionesPedagogicas.Application.Services
             throw new NotImplementedException();
         }
 
-        public Task<Infractor> GetById(string id)
+        public async Task<Infractor> GetById(string id)
         {
-            throw new NotImplementedException();
+            return await _infractorRepository.GetById(id);
         }
 
         public Task<bool> Update(Infractor entity)

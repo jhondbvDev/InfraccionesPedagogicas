@@ -11,6 +11,7 @@ namespace InfraccionesPedagogicas.Application
             return services.AddScoped<ISalaService, SalaService>()
                     .AddScoped<IDatosInfractorService, DatosInfractorService>()
                     .AddScoped<IInfraccionService, InfraccionService>()
+                    .AddScoped<IInfractorService,InfractorService>()
                     .AddScoped<IEmailService, EmailService>()
                     .AddScoped<IAsistenciaService, AsistenciaService>(); 
         }
