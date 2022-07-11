@@ -19,7 +19,7 @@ namespace InfraccionesPedagogicas.API.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("{infractorId}")]
+        [HttpGet("getDatosInfractor/{infractorId}")]
         public async Task<IActionResult> GetDatosInfractor(string infractorId)
         {
             var datosInfractor = await _datosInfractorService.GetByInfractorId(infractorId);
@@ -30,7 +30,7 @@ namespace InfraccionesPedagogicas.API.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> CreateSala(CreateDatosInfractorDTO dto)
+        public async Task<IActionResult> CreateDatos(CreateDatosInfractorDTO dto)
         {
             var datosInfractor = _mapper.Map<DatosInfractor>(dto);
             await _datosInfractorService.Add(datosInfractor);
@@ -38,7 +38,7 @@ namespace InfraccionesPedagogicas.API.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateSala(UpdateDatosInfractorDTO dto)
+        public async Task<IActionResult> UpdateDatos(UpdateDatosInfractorDTO dto)
         {
             var datosInfractor = _mapper.Map<DatosInfractor>(dto);
             await _datosInfractorService.Update(datosInfractor);
