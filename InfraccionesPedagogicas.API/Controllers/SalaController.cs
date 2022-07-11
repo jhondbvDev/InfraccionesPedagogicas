@@ -33,6 +33,14 @@ namespace InfraccionesPedagogicas.API.Controllers
             return Ok(salasDto);
         }
 
+        [HttpGet("Deep/{salaId}")]
+        public async Task<IActionResult> GetSalaDeep(int salaId)
+        {
+            var sala = await _salaService.GetDeep(salaId);
+            var salasDto = _mapper.Map<SalaDTO>(sala);
+            return Ok(salasDto);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetSala(int id)
         {

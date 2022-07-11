@@ -29,19 +29,27 @@ namespace InfraccionesPedagogicas.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAsistencia(int id)
         {
-            var sala = await _asistenciaService.GetById(id);
-            var salaDTO = _mapper.Map<AsistenciaDTO>(sala);
-            return Ok(salaDTO);
+            var asistencia = await _asistenciaService.GetById(id);
+            var asistenciaDto = _mapper.Map<AsistenciaDTO>(asistencia);
+            return Ok(asistenciaDto);
         }
+        [HttpGet("GetAsistenciaByInfractor/{infractorId}")]
+        public async Task<IActionResult> GetAsistenciaByInfractor(string infractorId)
+        {
+            var asistencia = await _asistenciaService.GetAsistenciaByInfractor(infractorId);
+            var asistenciaDto = _mapper.Map<AsistenciaDTO>(asistencia);
+            return Ok(asistenciaDto);
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateAsistencia(CreateAsistenciaDTO dto)
         {
-            var sala = _mapper.Map<Asistencia>(dto);
-            await _asistenciaService.Add(sala);
+            var asistencia = _mapper.Map<Asistencia>(dto);
+            await _asistenciaService.Add(asistencia);
+            var asistenciaDto = _mapper.Map<AsistenciaDTO>(asistencia);
+            //await _emailService.SendConfirmationEmail(null);
 
-            await _emailService.SendConfirmationEmail(null);
-
-            return Ok();
+            return Ok(asistenciaDto);
         }
 
         [HttpPut]

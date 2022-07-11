@@ -51,6 +51,16 @@ namespace InfraccionesPedagogicas.Application.Services
             throw new NotImplementedException();
         }
 
+        public async Task<Asistencia> GetAsistenciaByInfractor(string infractorId)
+        {
+            return await _asistenciaRepository.GetAsistenciaByInfractor(infractorId);
+        }
+
+        public async Task<IEnumerable<Asistencia>> GetAsistenciaBySala(int idsala)
+        {
+            return await _asistenciaRepository.GetWhere(x => x.SalaId == idsala);
+        }
+
         #endregion
     }
 }

@@ -18,7 +18,7 @@ namespace InfraccionesPedagogicas.API.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("getInfracciones/{infractorId}")]
+        [HttpGet("{infractorId}")]
         public async Task<IActionResult> GetInfracciones(string infractorId)
         {
             var infracciones = await _infraccionesService.GetByInfractorId(infractorId);

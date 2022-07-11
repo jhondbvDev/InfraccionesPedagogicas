@@ -16,5 +16,11 @@ namespace InfraccionesPedagogicas.Infrastructure.Repositories
             var salas = await _context.Salas.Include(b => b.Usuario).ToListAsync();
             return salas;
         }
+
+        public async Task<Sala> GetDeep(int salaId)
+        {
+            var sala = await _context.Salas.Include(b => b.Usuario).FirstOrDefaultAsync(x=>x.Id==salaId);
+            return sala;
+        }
     }
 }
