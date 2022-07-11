@@ -4,5 +4,6 @@ namespace InfraccionesPedagogicas.Application.Interfaces.Repositories
 {
     public interface ISalaRepository : IBaseRepository<Sala,int>
     {
+        Task<IEnumerable<Sala>> GetAllDeep();
     }
 }

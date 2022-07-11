@@ -27,6 +27,11 @@ namespace InfraccionesPedagogicas.Application.Services
            return await _salaRepository.GetAll();
         }
 
+        public async Task<IEnumerable<Sala>> GetAllDeep()
+        {
+            return await _salaRepository.GetAllDeep();
+        }
+
         public async Task<Sala> GetById(int id)
         {
             return await _salaRepository.GetById(id);

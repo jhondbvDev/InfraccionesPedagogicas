@@ -24,6 +24,15 @@ namespace InfraccionesPedagogicas.API.Controllers
             var salasDto = _mapper.Map<List<SalaDTO>>(salas);
             return Ok(salasDto);
         }
+
+        [HttpGet("Deep")]
+        public async Task<IActionResult> GetSalasDeep()
+        {
+            var salas = await _salaService.GetAllDeep();
+            var salasDto = _mapper.Map<List<SalaDTO>>(salas);
+            return Ok(salasDto);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetSala(int id)
         {

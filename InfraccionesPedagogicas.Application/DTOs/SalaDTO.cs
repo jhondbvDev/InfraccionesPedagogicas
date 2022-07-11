@@ -13,7 +13,10 @@ namespace InfraccionesPedagogicas.Application.DTOs
         [JsonProperty("link")]
         public string Link { get; set; }
         [JsonProperty("usuarioid")]
-        public int UsuarioId { get; set; }
+        public string UsuarioId { get; set; }
+        [JsonProperty("nombreusuario")]
+
+        public string NombreUsuario { get; set; }
     }
     public class CreateSalaDTO
     {
@@ -24,7 +27,7 @@ namespace InfraccionesPedagogicas.Application.DTOs
         [JsonProperty("link")]
         public string Link { get; set; }
         [JsonProperty("usuarioid")]
-        public int UsuarioId { get; set; }
+        public string UsuarioId { get; set; }
     }
     public class UpdateSalaDTO
     {
