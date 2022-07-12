@@ -17,7 +17,8 @@ namespace InfraccionesPedagogicas.Application.Interfaces.Services
         Task<bool> DeleteUserAsync(string userId);
         Task<bool> IsUniqueEmail(string email);
         Task<List<(string id, string fullName, string userName, string email)>> GetAllUsersAsync();
-        Task<List<(int id, string userName, string email, IList<string> roles)>> GetAllUsersDetailsAsync();
+        Task<List<(string id, string userName, string email, string role)>> GetAllUsersDetailsAsync();
+        Task<List<(string id, string userName, string email, string role)>> GetAllUsersDetailsExceptLoggedUserAsync(string userId);
         Task<bool> UpdateUserProfile(string id, string fullName, string email, IList<string> roles);
 
         // Role Section

@@ -6,5 +6,6 @@ namespace InfraccionesPedagogicas.Application.Interfaces.Services
     {
         Task<IEnumerable<Sala>> GetAllDeep();
         Task<Sala> GetDeep(int salaId);
+        Task<IEnumerable<Sala>> GetDeepForUser(string userId);
     }
 }

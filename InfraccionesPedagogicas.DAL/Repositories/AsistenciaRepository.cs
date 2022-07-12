@@ -17,6 +17,9 @@ namespace InfraccionesPedagogicas.Infrastructure.Repositories
             return asistencia;
         }
 
-
+        public async Task<IEnumerable<Asistencia>> GetAsistenciaBySala(int idsala)
+        {
+            return await _entities.Where(x => x.SalaId == idsala).Include(x => x.Infractor).ToListAsync();
+        }
     }
 }

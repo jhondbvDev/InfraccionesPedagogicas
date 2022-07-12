@@ -134,15 +134,37 @@ namespace InfraccionesPedagogicas.Infrastructure.Services
 
             return users.Select(user => (user.Id, user.Nombre, user.UserName, user.Email)).ToList();
         }
-
-        public Task<List<(int id, string userName, string email, IList<string> roles)>> GetAllUsersDetailsAsync()
+        
+        public async Task<List<(string id, string userName, string email, string role)>> GetAllUsersDetailsAsync()
         {
-            throw new NotImplementedException();
+            var userDetails = new List<(string id,string userName, string email, string role)>();
 
-            //var roles = await _userManager.GetRolesAsync(user);
-            //return (user.Id, user.UserName, user.Email, roles);
+            var users = await _userManager.Users.ToListAsync();
 
-            //var users = _userManager.Users.ToListAsync();
+            foreach(Usuario user in users)
+            {
+                var role = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
+
+                userDetails.Add(new (user.Id, user.Nombre, user.Email, role));
+            }
+
+            return userDetails;
+        }
+
+        public async Task<List<(string id, string userName, string email, string role)>> GetAllUsersDetailsExceptLoggedUserAsync(string userId)
+        {
+            var userDetails = new List<(string id, string userName, string email, string role)>();
+
+            var users = await _userManager.Users.Where(user => user.Id != userId).ToListAsync();
+
+            foreach (Usuario user in users)
+            {
+                var role = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
+
+                userDetails.Add(new(user.Id, user.Nombre, user.Email, role));
+            }
+
+            return userDetails;
         }
 
         public async Task<List<(string id, string roleName)>> GetRolesAsync()

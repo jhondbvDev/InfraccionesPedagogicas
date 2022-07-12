@@ -42,6 +42,11 @@ namespace InfraccionesPedagogicas.Application.Services
            return await _salaRepository.GetDeep(salaId);
         }
 
+        public async Task<IEnumerable<Sala>> GetDeepForUser(string userId)
+        {
+            return await _salaRepository.GetDeepForUser(userId);
+        }
+
         public async Task<bool> Update(Sala entity)
         {
             var salaOld = await _salaRepository.GetById(entity.Id);

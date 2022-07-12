@@ -33,11 +33,25 @@ namespace InfraccionesPedagogicas.API.Controllers
             var asistenciaDto = _mapper.Map<AsistenciaDTO>(asistencia);
             return Ok(asistenciaDto);
         }
-        [HttpGet("GetAsistenciaByInfractor/{infractorId}")]
+        [HttpGet("getAsistenciaByInfractor/{infractorId}")]
         public async Task<IActionResult> GetAsistenciaByInfractor(string infractorId)
         {
             var asistencia = await _asistenciaService.GetAsistenciaByInfractor(infractorId);
             var asistenciaDto = _mapper.Map<AsistenciaDTO>(asistencia);
+
+            return Ok(asistenciaDto);
+        }
+
+        [HttpGet("getAsistenciasBySala/{salaId}")]
+        public async Task<IActionResult> GetAsistenciasBySala(int salaId)
+        {
+            var asistencias = await _asistenciaService.GetAsistenciaBySala(salaId);
+            var asistenciaDto = asistencias.Select(asistencia => new AsistenciaDeepDTO
+            {
+                Asistio = asistencia.Asistio,
+                Id = asistencia.Id,
+                NombreInfractor = asistencia.Infractor.Nombre
+            });
             return Ok(asistenciaDto);
         }
 
@@ -55,9 +69,15 @@ namespace InfraccionesPedagogicas.API.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateAsistencia(UpdateAsistenciaDTO dto)
         {
-            var sala = _mapper.Map<Asistencia>(dto);
-            await _asistenciaService.Update(sala);
-            return Ok();
+            try
+            {
+                var sala = _mapper.Map<Asistencia>(dto);
+                await _asistenciaService.Update(sala);
+                return Ok();
+            }
+            catch{
+                return BadRequest("Error durante la actualizacion de la asistencia, intente nuevamente");
+            }
         }
     }
 }

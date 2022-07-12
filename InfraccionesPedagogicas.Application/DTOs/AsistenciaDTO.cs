@@ -14,6 +14,16 @@ namespace InfraccionesPedagogicas.Application.DTOs
         public int SalaId { get; set; }
     }
 
+    public class AsistenciaDeepDTO
+    {
+        [JsonProperty("asistenciaId")]
+        public int Id { get; set; }
+        [JsonProperty("nombreInfractor")]
+        public string NombreInfractor { get; set; }
+        [JsonProperty("asistio")]
+        public bool Asistio { get; set; }
+    }
+
     public class CreateAsistenciaDTO
     {
         [JsonProperty("documento")]

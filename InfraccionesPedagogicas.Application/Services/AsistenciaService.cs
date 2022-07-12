@@ -58,7 +58,7 @@ namespace InfraccionesPedagogicas.Application.Services
 
         public async Task<IEnumerable<Asistencia>> GetAsistenciaBySala(int idsala)
         {
-            return await _asistenciaRepository.GetWhere(x => x.SalaId == idsala);
+            return await _asistenciaRepository.GetAsistenciaBySala(idsala);
         }
 
         #endregion
