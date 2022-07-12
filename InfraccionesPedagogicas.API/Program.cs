@@ -11,7 +11,7 @@ builder.Services.AddCors();
 builder.Services.AddControllers();
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
-builder.Services.AddAuthorization();
+
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddSwaggerGen();
 //JWT authentication
@@ -32,6 +32,7 @@ builder.Services.AddAuthentication(o =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Authentication:SecretKey"]))
     };
 });
+builder.Services.AddAuthorization();
 
 
 var app = builder.Build();

@@ -1,13 +1,16 @@
 ﻿using AutoMapper;
 using InfraccionesPedagogicas.Application.DTOs;
+using InfraccionesPedagogicas.Application.Exceptions;
 using InfraccionesPedagogicas.Application.Interfaces.Services;
 using InfraccionesPedagogicas.Core.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InfraccionesPedagogicas.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class AsistenciaController : ControllerBase
     {
         private readonly IAsistenciaService _asistenciaService;
@@ -58,12 +61,20 @@ namespace InfraccionesPedagogicas.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateAsistencia(CreateAsistenciaDTO dto)
         {
-            var asistencia = _mapper.Map<Asistencia>(dto);
-            await _asistenciaService.Add(asistencia);
-            var asistenciaDto = _mapper.Map<AsistenciaDTO>(asistencia);
-            //await _emailService.SendConfirmationEmail(null);
+            try
+            {
+                var asistencia = _mapper.Map<Asistencia>(dto);
+                await _asistenciaService.Add(asistencia);
+                var asistenciaDto = _mapper.Map<AsistenciaDTO>(asistencia);
+                //await _emailService.SendConfirmationEmail(null);
 
-            return Ok(asistenciaDto);
+                return Ok(asistenciaDto);
+            }
+            catch (BusinessException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        
         }
 
         [HttpPut]

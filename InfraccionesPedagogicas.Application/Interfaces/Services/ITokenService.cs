@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InfraccionesPedagogicas.Application.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace InfraccionesPedagogicas.Application.Interfaces.Services
 {
     public interface ITokenService
     {
-        public  string GenerateJWTToken(string userId,string name, string userName, IList<string> roles );
+        public  string GenerateJWTToken(string userId,string name, string userName, IList<string> roles,UserType userType );
     }
 }

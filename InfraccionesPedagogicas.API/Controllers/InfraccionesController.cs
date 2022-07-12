@@ -1,12 +1,14 @@
 ﻿using AutoMapper;
 using InfraccionesPedagogicas.Application.DTOs;
 using InfraccionesPedagogicas.Application.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InfraccionesPedagogicas.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class InfraccionesController : ControllerBase
     {
         private readonly IInfraccionService _infraccionesService;
