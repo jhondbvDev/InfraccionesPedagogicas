@@ -44,6 +44,12 @@ namespace InfraccionesPedagogicas.API.Controllers
             }
         }
 
+        [HttpGet("test")]
+        public async Task<IActionResult> Test()
+        {
+            return Ok("Funciona");
+        }
+
         [HttpPost("signIn")]
         public async Task<IActionResult> SignIn(LogInUserDTO userDto)
         {

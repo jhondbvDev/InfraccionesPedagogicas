@@ -17,9 +17,16 @@ namespace InfraccionesPedagogicas.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services , IConfiguration configuration)
         {
+            //MySql
+            var connectionString = configuration.GetConnectionString("MySqlConnection");
             services.AddDbContext<InfraccionesDbContext>(options =>
-                    options.UseNpgsql(configuration.GetConnectionString("PostgresSQLConnection"),
-                    b => b.MigrationsAssembly(typeof(InfraccionesDbContext).Assembly.FullName)), ServiceLifetime.Transient);
+                    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString),
+                    b => b.MigrationsAssembly(typeof(InfraccionesDbContext).Assembly.FullName)));
+
+            //Postgres
+            //services.AddDbContext<InfraccionesDbContext>(options =>
+            //        options.UseNpgsql(configuration.GetConnectionString("PostgresSQLConnection"),
+            //        b => b.MigrationsAssembly(typeof(InfraccionesDbContext).Assembly.FullName)), ServiceLifetime.Transient);
 
             services.AddIdentity<Usuario, IdentityRole>()
                 .AddEntityFrameworkStores<InfraccionesDbContext>()
