@@ -1,4 +1,5 @@
-﻿using InfraccionesPedagogicas.Application.Interfaces.Services;
+﻿using InfraccionesPedagogicas.Application.Enums;
+using InfraccionesPedagogicas.Application.Interfaces.Services;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,7 @@ namespace InfraccionesPedagogicas.Infrastructure.Identity
             _audience = audience;
             _expiryMinutes = expiryMinutes;
         }
-        public string GenerateJWTToken(string userId, string name,string userName, IList<string> roles)
+        public string GenerateJWTToken(string userId, string name,string userName, IList<string> roles,UserType userType)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_key));
             var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
@@ -34,7 +35,8 @@ namespace InfraccionesPedagogicas.Infrastructure.Identity
 
                 new Claim(ClaimTypes.Name, name),
                 new Claim("UserId", userId),
-                new Claim("email", userName)
+                new Claim("email", userName),
+                new Claim("userType", userType.ToString())
             };
             claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
 

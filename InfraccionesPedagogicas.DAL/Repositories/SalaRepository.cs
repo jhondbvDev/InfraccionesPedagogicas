@@ -13,7 +13,8 @@ namespace InfraccionesPedagogicas.Infrastructure.Repositories
 
         public async Task<IEnumerable<Sala>> GetAllDeep()
         {
-            var salas = await _context.Salas.Include(b => b.Usuario).ToListAsync();
+            var salas = await _context.Salas.Where(x=>x.Cupo>0 && x.Fecha>DateTime.Now.ToUniversalTime())
+                .Include(b => b.Usuario).ToListAsync();
             return salas;
         }
 

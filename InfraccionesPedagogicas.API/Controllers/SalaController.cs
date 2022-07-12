@@ -2,12 +2,14 @@
 using InfraccionesPedagogicas.Application.DTOs;
 using InfraccionesPedagogicas.Application.Interfaces.Services;
 using InfraccionesPedagogicas.Core.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InfraccionesPedagogicas.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class SalaController : Controller
     {
         private readonly ISalaService _salaService;
