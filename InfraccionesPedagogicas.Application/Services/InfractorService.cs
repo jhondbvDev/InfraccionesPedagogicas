@@ -2,6 +2,7 @@
 using InfraccionesPedagogicas.Application.Interfaces.Repositories;
 using InfraccionesPedagogicas.Application.Interfaces.Services;
 using InfraccionesPedagogicas.Core.Entities;
+using System.Transactions;
 
 namespace InfraccionesPedagogicas.Application.Services
 {
@@ -29,6 +30,7 @@ namespace InfraccionesPedagogicas.Application.Services
         public async Task Bulk(IEnumerable<Infractor> infractores)
         {
             await _infractorRepository.Bulk(infractores);
+     
         }
 
         #region No implementados

@@ -37,14 +37,14 @@ namespace InfraccionesPedagogicas.Infrastructure.Repositories
             {
                 var excludedIDs = new HashSet<string>(infractores.Select(p => p.Id));
                 //DateTime now = DateTime.Now.ToUniversalTime();
-                var test = _entities.Where(infractor => !excludedIDs.Contains(infractor.Id)
+                var items = _entities.Where(infractor => !excludedIDs.Contains(infractor.Id)
                 && !infractor.Asistencias.Any(asistencia => asistencia.Sala.Fecha >= DateTime.Now));
 
                 //codigo Andres
                 //var infractoresQueNoEstanEnElArchivoYNoTienenReunionesPendientesEnBaseDeDatos = _entities
                 //        .Where(e => !infractores.Any(infractor => e.Id.Equals(infractor.Id)) && !e.Asistencias.Any(asistencia => asistencia.Sala.Fecha >= DateTime.Now));
 
-                _context.RemoveRange(test);
+                _context.RemoveRange(items);
                 await _context.SaveChangesAsync();
             }
             catch (Exception ex)
@@ -59,12 +59,8 @@ namespace InfraccionesPedagogicas.Infrastructure.Repositories
         {
             try
             {
-                using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
-                {
-                    await this.BulkDeleteOldRecords(infractores);
-                    await this.BulkAdd(infractores);
-                    scope.Complete();
-                }
+                await this.BulkDeleteOldRecords(infractores);
+                await this.BulkAdd(infractores);
             }
             catch (Exception ex)
             {

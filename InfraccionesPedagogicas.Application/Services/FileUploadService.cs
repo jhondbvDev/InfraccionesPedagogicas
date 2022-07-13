@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace InfraccionesPedagogicas.Application.Services
 {
@@ -19,7 +20,7 @@ namespace InfraccionesPedagogicas.Application.Services
             _infraccionService = infraccionService;
             _infractorService = infractorService;
         }
-        public  bool ProcessFile(IFormFile file)
+        public bool ProcessFile(IFormFile file)
         {
             try
             {
@@ -58,6 +59,8 @@ namespace InfraccionesPedagogicas.Application.Services
                 {
                     _infraccionService.BulkAdd(listaInfracciones).Wait();
                 }
+
+
                 return true;
             }
             catch (Exception ex)
@@ -65,7 +68,7 @@ namespace InfraccionesPedagogicas.Application.Services
                 return false;
                 //throw ex;
             }
-          
+
         }
     }
 }
