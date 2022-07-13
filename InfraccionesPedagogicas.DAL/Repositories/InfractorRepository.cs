@@ -1,6 +1,7 @@
 ﻿using InfraccionesPedagogicas.Application.Interfaces.Repositories;
 using InfraccionesPedagogicas.Core.Entities;
 using InfraccionesPedagogicas.Infrastructure.Data;
+using System.Transactions;
 
 namespace InfraccionesPedagogicas.Infrastructure.Repositories
 {
@@ -51,6 +52,25 @@ namespace InfraccionesPedagogicas.Infrastructure.Repositories
                 throw ex;
             }
     
+        }
+
+        public async Task Bulk (IEnumerable<Infractor> infractores)
+        {
+            try
+            {
+                using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+                {
+                    await this.BulkDeleteOldRecords(infractores);
+                    await this.BulkAdd(infractores);
+                    scope.Complete();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
         }
     }
 }

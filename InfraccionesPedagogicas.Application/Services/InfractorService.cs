@@ -26,6 +26,11 @@ namespace InfraccionesPedagogicas.Application.Services
             await _infractorRepository.BulkDeleteOldRecords(infractores);
         }
 
+        public async Task Bulk(IEnumerable<Infractor> infractores)
+        {
+            await _infractorRepository.Bullk(infractores);
+        }
+
         #region No implementados
 
         public Task Add(Infractor entity)

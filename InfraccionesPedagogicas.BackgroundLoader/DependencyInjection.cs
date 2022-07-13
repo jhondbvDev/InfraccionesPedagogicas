@@ -14,9 +14,9 @@ namespace InfraccionesPedagogicas.BackgroundLoader
         public static IServiceCollection AddInfrastructure(this IServiceCollection services , IConfiguration configuration)
         {
             var loadPath = configuration.GetSection("LoadDirectory").Get<LoadPath>();
-
+            var connectionString = configuration.GetConnectionString("MySqlConnection");
             return services.AddDbContext<InfraccionesDbContext>(options =>
-                    options.UseNpgsql(configuration.GetConnectionString("PostgresSQLConnection"),
+                    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString),
                     b => b.MigrationsAssembly(typeof(InfraccionesDbContext).Assembly.FullName)), ServiceLifetime.Transient)
                     .AddScoped<IInfraccionesDbContext, InfraccionesDbContext>()
                     .AddScoped<IInfraccionRepository, InfraccionRepository>()

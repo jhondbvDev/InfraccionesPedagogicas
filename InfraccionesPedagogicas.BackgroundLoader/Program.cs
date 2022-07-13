@@ -7,5 +7,5 @@ IHost host = Host.CreateDefaultBuilder(args)
                 .AddInfrastructure(hostContext.Configuration);
     })
     .Build();
-AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+//AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 await host.RunAsync();
