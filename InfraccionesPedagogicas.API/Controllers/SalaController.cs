@@ -71,10 +71,10 @@ namespace InfraccionesPedagogicas.API.Controllers
         {
             var sala = _mapper.Map<Sala>(dto);
             await _salaService.Update(sala);
-            return Ok();
+            return Ok("Sala actualizada con exito");
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSala(int id)
         {
             var result = await _salaService.Delete(id);
