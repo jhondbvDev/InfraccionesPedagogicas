@@ -107,6 +107,11 @@ namespace InfraccionesPedagogicas.Application.Services
             return await _asistenciaRepository.GetAsistenciaBySala(idsala);
         }
 
+        public async Task<bool> HasRegisteredInfractores(int idsala) 
+        {
+            return await _asistenciaRepository.HasRegisteredInfractores(idsala);
+        }
+
         #endregion
     }
 }

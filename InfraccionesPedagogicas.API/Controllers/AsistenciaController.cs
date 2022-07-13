@@ -90,5 +90,11 @@ namespace InfraccionesPedagogicas.API.Controllers
                 return BadRequest("Error durante la actualizacion de la asistencia, intente nuevamente");
             }
         }
+
+        [HttpGet("hasRegisteredInfractores/{salaId}")]
+        public async Task<IActionResult> HasRegisteredInfractores(int salaId)
+        {
+            return Ok(await _asistenciaService.HasRegisteredInfractores(salaId));
+        }
     }
 }

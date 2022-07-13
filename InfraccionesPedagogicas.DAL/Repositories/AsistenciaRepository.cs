@@ -21,5 +21,10 @@ namespace InfraccionesPedagogicas.Infrastructure.Repositories
         {
             return await _entities.Where(x => x.SalaId == idsala).Include(x => x.Infractor).ToListAsync();
         }
+
+        public async Task<bool> HasRegisteredInfractores(int idsala) 
+        {
+            return await _entities.Where(x => x.SalaId == idsala).AnyAsync();
+        }
     }
 }
