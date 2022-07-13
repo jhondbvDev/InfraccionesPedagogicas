@@ -14,19 +14,13 @@ namespace InfraccionesPedagogicas.API.Controllers
         {
             _fileUploadService= fileUploadService;  
         }
-            
-        [HttpGet]
-        public async Task<IActionResult> index()
-        {
-            return Ok("funciona");
-        }
 
         [HttpPost]
         public IActionResult ProcessInfracciones(IFormFile file)
         {
             var result = _fileUploadService.ProcessFile(file);
             return Ok(result);
-            //return Ok(string.Format("archivo con infractores :{0} infracciones : {1}", listaInfractores.Count(), listaInfracciones.Count()));
+            
         }
 
 

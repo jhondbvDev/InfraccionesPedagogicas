@@ -13,7 +13,8 @@ namespace InfraccionesPedagogicas.Application
                     .AddScoped<IInfraccionService, InfraccionService>()
                     .AddScoped<IInfractorService,InfractorService>()
                     .AddScoped<IEmailService, EmailService>()
-                    .AddScoped<IAsistenciaService, AsistenciaService>(); 
+                    .AddScoped<IAsistenciaService, AsistenciaService>()
+                    .AddScoped<IFileUploadService,FileUploadService>(); 
         }
     }
 }

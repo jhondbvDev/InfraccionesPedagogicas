@@ -7,5 +7,7 @@ namespace InfraccionesPedagogicas.Application.Interfaces.Services
         public Task BulkAdd(IEnumerable<Infractor> infractores);
         public Task BulkDeleteOldRecords(IEnumerable<Infractor> infractores);
 
+        public Task Bulk(IEnumerable<Infractor> infractores);
+
     }
 }

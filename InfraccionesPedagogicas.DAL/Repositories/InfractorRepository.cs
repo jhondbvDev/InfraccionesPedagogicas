@@ -17,13 +17,13 @@ namespace InfraccionesPedagogicas.Infrastructure.Repositories
             {
                 //var infractoresParaInsertar = infractores.Where(infractor => !_entities.Any(e => e.Id.Equals(infractor.Id))); codigo Andres
 
-                var infractoresParaInsertar = infractores.Where(infractor => !(_entities.Any(e=>e.Id==infractor.Id)) );
-                infractoresParaInsertar = infractoresParaInsertar.GroupBy(x => x.Id).Select(y=>y.First());//Elimina duplicados
- 
-               await _entities.AddRangeAsync(infractoresParaInsertar);
+                var infractoresParaInsertar = infractores.Where(infractor => !(_entities.Any(e => e.Id == infractor.Id)));
+                infractoresParaInsertar = infractoresParaInsertar.GroupBy(x => x.Id).Select(y => y.First());//Elimina duplicados
+
+                await _entities.AddRangeAsync(infractoresParaInsertar);
                 await _context.SaveChangesAsync();
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
 
                 throw ex;
@@ -36,8 +36,9 @@ namespace InfraccionesPedagogicas.Infrastructure.Repositories
             try
             {
                 var excludedIDs = new HashSet<string>(infractores.Select(p => p.Id));
-                DateTime now = DateTime.Now.ToUniversalTime();
-                var test = _entities.Where(infractor => !excludedIDs.Contains(infractor.Id) && infractor.Asistencias.Any(asistencia=>asistencia.Sala.Fecha>=now));
+                //DateTime now = DateTime.Now.ToUniversalTime();
+                var test = _entities.Where(infractor => !excludedIDs.Contains(infractor.Id)
+                && !infractor.Asistencias.Any(asistencia => asistencia.Sala.Fecha >= DateTime.Now));
 
                 //codigo Andres
                 //var infractoresQueNoEstanEnElArchivoYNoTienenReunionesPendientesEnBaseDeDatos = _entities
@@ -51,10 +52,10 @@ namespace InfraccionesPedagogicas.Infrastructure.Repositories
 
                 throw ex;
             }
-    
+
         }
 
-        public async Task Bulk (IEnumerable<Infractor> infractores)
+        public async Task Bulk(IEnumerable<Infractor> infractores)
         {
             try
             {

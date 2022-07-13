@@ -36,31 +36,6 @@ namespace InfraccionesPedagogicas.Application.Services
 
                 scope.Complete();
             }
-            //try
-            //{
-            //    using (TransactionScope scope = new TransactionScope())
-            //    {
-            //        await _asistenciaRepository.Add(entity);
-            //        //decrease Sala cupo
-            //        var sala = await _salaRepository.GetById(entity.SalaId);
-            //        if (sala.Cupo > 1)
-            //            sala.Cupo--;
-            //        else
-            //        {
-            //            scope.Dispose();
-            //            throw new BusinessException("La sala con la fecha seleccionada no tiene cupos disponibles, intente con otra .");
-
-            //        }
-            //        await _salaRepository.Update(sala);
-
-            //        scope.Complete();
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-
-            //    throw ex;
-            //}
             
         }
 

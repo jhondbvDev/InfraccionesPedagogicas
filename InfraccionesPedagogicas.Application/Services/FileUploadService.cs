@@ -19,50 +19,53 @@ namespace InfraccionesPedagogicas.Application.Services
             _infraccionService = infraccionService;
             _infractorService = infractorService;
         }
-        public bool ProcessFile(IFormFile file)
+        public  bool ProcessFile(IFormFile file)
         {
-            var listaInfractores = new List<Infractor>();
-            var listaInfracciones = new List<Infraccion>();
-            using var excelPorProcesar = file.OpenReadStream();
-            using (var package = new ExcelPackage(excelPorProcesar))
+            try
             {
-                ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
-
-                for (int i = worksheet.Dimension.Start.Row + 1; i < worksheet.Dimension.End.Row; i++)
+                var listaInfractores = new List<Infractor>();
+                var listaInfracciones = new List<Infraccion>();
+                using var excelPorProcesar = file.OpenReadStream();
+                using (var package = new ExcelPackage(excelPorProcesar))
                 {
-                    listaInfractores.Add(new Infractor
-                    {
-                        Id = worksheet.Cells[i, 5].Value.ToString(),
-                        Nombre = worksheet.Cells[i, 6].Value.ToString(),
-                        Apellido = worksheet.Cells[i, 7].Value.ToString(),
-                    });
+                    ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
 
-                    listaInfracciones.Add(new Infraccion
+                    for (int i = worksheet.Dimension.Start.Row + 1; i < worksheet.Dimension.End.Row; i++)
                     {
-                        NumeroInfraccion = worksheet.Cells[i, 1].Value.ToString(),
-                        Fecha = DateTime.ParseExact(worksheet.Cells[i, 2].Value.ToString(), "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.AssumeLocal),
-                        CodigoInfraccion = worksheet.Cells[i, 4].Value.ToString(),
-                        InfractorId = worksheet.Cells[i, 5].Value.ToString()
-                    });
+                        listaInfractores.Add(new Infractor
+                        {
+                            Id = worksheet.Cells[i, 5].Value.ToString(),
+                            Nombre = worksheet.Cells[i, 6].Value.ToString(),
+                            Apellido = worksheet.Cells[i, 7].Value.ToString(),
+                        });
+
+                        listaInfracciones.Add(new Infraccion
+                        {
+                            NumeroInfraccion = worksheet.Cells[i, 1].Value.ToString(),
+                            Fecha = DateTime.ParseExact(worksheet.Cells[i, 2].Value.ToString(), "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.AssumeLocal),
+                            CodigoInfraccion = worksheet.Cells[i, 4].Value.ToString(),
+                            InfractorId = worksheet.Cells[i, 5].Value.ToString()
+                        });
+                    }
                 }
-            }
 
-            if (listaInfractores.Count > 0)
+                if (listaInfractores.Count > 0)
+                {
+                    _infractorService.Bulk(listaInfractores).Wait();
+                }
+
+                if (listaInfracciones.Count > 0)
+                {
+                    _infraccionService.BulkAdd(listaInfracciones).Wait();
+                }
+                return true;
+            }
+            catch (Exception ex)
             {
-               
-                _infractorService.BulkDeleteOldRecords(listaInfractores);
-                _infractorService.BulkAdd(listaInfractores);
+                return false;
+                //throw ex;
             }
-
-            if (listaInfracciones.Count > 0)
-            {
-                _infraccionService.BulkAdd(listaInfracciones);
-            }
-
-
-            //excelPorProcesar.MoveTo(excelInfraccionesProcesadasPath);
-
-            return false;
+          
         }
     }
 }
