@@ -28,7 +28,7 @@ namespace InfraccionesPedagogicas.Application.Services
 
         public async Task Bulk(IEnumerable<Infractor> infractores)
         {
-            await _infractorRepository.Bullk(infractores);
+            await _infractorRepository.Bulk(infractores);
         }
 
         #region No implementados
