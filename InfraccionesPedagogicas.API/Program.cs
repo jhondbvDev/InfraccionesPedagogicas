@@ -7,7 +7,36 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddCors();
+if (builder.Environment.IsDevelopment())
+{
+
+    builder.Services.AddCors(options =>
+    {
+        options.AddPolicy(name: "InfraccionesCorsPolicy",
+                          policy =>
+                          {
+                              policy.WithOrigins("http://localhost:4200");
+                              policy.AllowAnyMethod();
+                              policy.AllowAnyHeader();
+                          });
+    });
+}
+else if (builder.Environment.IsProduction())
+{
+    builder.Services.AddCors(options =>
+    {
+        options.AddPolicy(name: "InfraccionesCorsPolicy",
+                          policy =>
+                          {
+                              policy.WithOrigins(
+                                  "https://cursosamonestacion.transitobello.com", 
+                                  "http://localhost:4200");
+                              policy.AllowAnyMethod();
+                              policy.AllowAnyHeader();
+                          });
+    });
+}
+
 builder.Services.AddControllers();
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
@@ -40,33 +69,15 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-
     app.UseSwagger();
     app.UseSwaggerUI(options =>
     {
         options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
         options.RoutePrefix = string.Empty;
     });
-    app.UseCors(
-            option =>
-            {
-                option.WithOrigins("http://localhost:4200");
-                option.AllowAnyMethod();
-                option.AllowAnyHeader();
-            }
-        );
 }
-else if (app.Environment.IsProduction())
-{
-    app.UseCors(
-           option =>
-           {
-               option.WithOrigins("https://cursosamonestacion.transitobello.com/");
-               option.AllowAnyMethod();
-               option.AllowAnyHeader();
-           }
-       );
-}
+
+app.UseCors("InfraccionesCorsPolicy");
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();

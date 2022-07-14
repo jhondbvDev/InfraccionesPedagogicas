@@ -4,10 +4,12 @@ using InfraccionesPedagogicas.Application.Exceptions;
 using InfraccionesPedagogicas.Application.Interfaces.Services;
 using InfraccionesPedagogicas.Core.Entities;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InfraccionesPedagogicas.API.Controllers
 {
+    [EnableCors("InfraccionesCorsPolicy")]
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]

@@ -1,10 +1,10 @@
 ﻿using InfraccionesPedagogicas.Application.Interfaces.Services;
-using InfraccionesPedagogicas.Core.Entities;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using OfficeOpenXml;
 
 namespace InfraccionesPedagogicas.API.Controllers
 {
+    [EnableCors("InfraccionesCorsPolicy")]
     [Route("api/[controller]")]
     [ApiController]
     public class FileUploadController : ControllerBase

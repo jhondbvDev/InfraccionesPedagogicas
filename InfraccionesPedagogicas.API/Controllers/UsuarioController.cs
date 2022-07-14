@@ -1,12 +1,13 @@
 ﻿using InfraccionesPedagogicas.Application.DTOs;
 using InfraccionesPedagogicas.Application.Exceptions;
 using InfraccionesPedagogicas.Application.Interfaces.Services;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.RegularExpressions;
 
 namespace InfraccionesPedagogicas.API.Controllers
 {
+    [EnableCors("InfraccionesCorsPolicy")]
     [Route("api/[controller]")]
     [ApiController]
     public class UsuarioController : ControllerBase

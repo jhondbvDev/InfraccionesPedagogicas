@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
 using InfraccionesPedagogicas.Application.DTOs;
 using InfraccionesPedagogicas.Application.Interfaces.Services;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InfraccionesPedagogicas.API.Controllers
 {
+    [EnableCors("InfraccionesCorsPolicy")]
     [Route("api/[controller]")]
     [ApiController]
     
