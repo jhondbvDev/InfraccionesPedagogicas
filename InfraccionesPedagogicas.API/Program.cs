@@ -68,17 +68,6 @@ else if (app.Environment.IsProduction())
        );
 }
 app.UseHttpsRedirection();
-
-app.UseCors(
-           option =>
-           {
-               option.WithOrigins("http://localhost:4200");
-               option.AllowAnyMethod();
-               option.AllowAnyHeader();
-           }
-       );
-
-
 app.UseAuthentication();
 app.UseAuthorization();
 
