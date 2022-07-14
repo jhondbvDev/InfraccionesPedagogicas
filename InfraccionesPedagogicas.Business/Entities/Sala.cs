@@ -6,7 +6,7 @@
         public DateTime Fecha { get; set; }
         public int Cupo { get; set; }
         public string Link { get; set; }
-
+        public int TotalCupo { get; set; }
         public string UsuarioId { get; set; }
         public virtual Usuario Usuario { get; set; }
     }

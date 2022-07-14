@@ -1,4 +1,5 @@
-﻿using InfraccionesPedagogicas.Application.Interfaces.Repositories;
+﻿using InfraccionesPedagogicas.Application.Exceptions;
+using InfraccionesPedagogicas.Application.Interfaces.Repositories;
 using InfraccionesPedagogicas.Application.Interfaces.Services;
 using InfraccionesPedagogicas.Core.Entities;
 
@@ -13,7 +14,9 @@ namespace InfraccionesPedagogicas.Application.Services
         }
         public async Task Add(Sala entity)
         {
-             await _salaRepository.Add(entity);
+
+            entity.Cupo= entity.TotalCupo;
+            await _salaRepository.Add(entity);
         }
 
         public async Task<bool> Delete(int Id)
@@ -24,7 +27,7 @@ namespace InfraccionesPedagogicas.Application.Services
 
         public async Task<IEnumerable<Sala>> GetAll()
         {
-           return await _salaRepository.GetAll();
+            return await _salaRepository.GetAll();
         }
 
         public async Task<IEnumerable<Sala>> GetAllDeep()
@@ -39,12 +42,17 @@ namespace InfraccionesPedagogicas.Application.Services
 
         public async Task<Sala> GetDeep(int salaId)
         {
-           return await _salaRepository.GetDeep(salaId);
+            return await _salaRepository.GetDeep(salaId);
         }
 
         public async Task<IEnumerable<Sala>> GetDeepForUser(string userId)
         {
             return await _salaRepository.GetDeepForUser(userId);
+        }
+
+        public async Task<bool> UpdateCupo(Sala entity)
+        {
+            return await _salaRepository.UpdateCupo(entity);
         }
 
         public async Task<bool> Update(Sala entity)
@@ -55,8 +63,11 @@ namespace InfraccionesPedagogicas.Application.Services
             {
                 salaOld.Fecha = entity.Fecha;
                 salaOld.Link = entity.Link;
-                salaOld.Cupo = entity.Cupo;
-
+                if (salaOld.TotalCupo == salaOld.Cupo)
+                    salaOld.Cupo = entity.TotalCupo;
+                else
+                    throw new BusinessException("no se puede editar una sala con al menos un infractor inscrito");
+                salaOld.TotalCupo = entity.TotalCupo;
                 return await _salaRepository.Update(salaOld);
             }
             else

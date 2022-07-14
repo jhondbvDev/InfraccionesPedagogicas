@@ -10,6 +10,9 @@ namespace InfraccionesPedagogicas.Application.DTOs
         public DateTime Fecha { get; set; }
         [JsonProperty("cupo")]
         public int Cupo { get; set; }
+
+        [JsonProperty("totalcupo")]
+        public int TotalCupo { get; set; }
         [JsonProperty("link")]
         public string Link { get; set; }
         [JsonProperty("usuarioid")]
@@ -22,8 +25,9 @@ namespace InfraccionesPedagogicas.Application.DTOs
     {
         [JsonProperty("fecha")]
         public DateTime Fecha { get; set; }
-        [JsonProperty("cupo")]
-        public int Cupo { get; set; }
+
+        [JsonProperty("totalcupo")]
+        public int TotalCupo { get; set; }
         [JsonProperty("link")]
         public string Link { get; set; }
         [JsonProperty("usuarioid")]
@@ -37,6 +41,9 @@ namespace InfraccionesPedagogicas.Application.DTOs
         public DateTime Fecha { get; set; }
         [JsonProperty("cupo")]
         public int Cupo { get; set; }
+
+        [JsonProperty("totalCupo")]
+        public int TotalCupo { get; set; }
         [JsonProperty("link")]
         public string Link { get; set; }
     }

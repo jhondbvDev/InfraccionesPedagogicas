@@ -19,6 +19,8 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
                 .HasAnnotation("ProductVersion", "6.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            MySqlModelBuilderExtensions.HasCharSet(modelBuilder, "utf8");
+
             modelBuilder.Entity("InfraccionesPedagogicas.Core.Entities.Asistencia", b =>
                 {
                     b.Property<int>("Id")
@@ -88,7 +90,7 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<DateTime>("Fecha")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("InfractorId")
                         .IsRequired()
@@ -134,15 +136,18 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Fecha")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Link")
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("TotalCupo")
+                        .HasColumnType("int");
+
                     b.Property<string>("UsuarioId")
                         .IsRequired()
-                        .HasColumnType("varchar(95)");
+                        .HasColumnType("varchar(255)");
 
                     b.HasKey("Id");
 
@@ -154,7 +159,7 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
             modelBuilder.Entity("InfraccionesPedagogicas.Core.Entities.Usuario", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("varchar(95)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
@@ -174,7 +179,7 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
@@ -217,12 +222,31 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "b5b8ed22-b18a-4496-bd9c-5be0dedee5a2",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "4b527bda-d940-494b-8595-e0f3fe7acc7d",
+                            Email = "tmb@transitobello.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            Nombre = "Admin",
+                            NormalizedUserName = "TMB@TRANSITOBELLO.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAELpNQH8l3o7bcDGlPTVYx2+SVyF1F1lKrjDWAdfcV+HbAbpGxwOPzT4Md5lcDvUN6Q==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "00000000-0000-0000-0000-000000000000",
+                            TwoFactorEnabled = false,
+                            UserName = "tmb@transitobello.com"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("varchar(95)");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -233,8 +257,8 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
                         .HasColumnType("varchar(256)");
 
                     b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("varchar(256)");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.HasKey("Id");
 
@@ -247,15 +271,15 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "f54fd973-9982-4a5e-9977-82bfeaff6391",
-                            ConcurrencyStamp = "543502d4-7e94-4a26-9c7c-293a3e58dd5b",
+                            Id = "c3f2ef86-8dc6-4604-ab8c-fd53f6bddf24",
+                            ConcurrencyStamp = "6dbb9de4-90e1-404d-891f-fc864fc3e79f",
                             Name = "TMB",
                             NormalizedName = "TMB"
                         },
                         new
                         {
-                            Id = "d066ab3c-18b3-4350-a4e7-9ff31c67be59",
-                            ConcurrencyStamp = "ec060c8f-5bc8-4075-ab70-a4ef8d4557e7",
+                            Id = "ba3bc22c-0eda-4245-85a6-82ad5e0ca266",
+                            ConcurrencyStamp = "1acbe538-612e-4d52-8bb7-924e6c5a6b9b",
                             Name = "SM",
                             NormalizedName = "SM"
                         });
@@ -265,6 +289,7 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasMaxLength(100)
                         .HasColumnType("int");
 
                     b.Property<string>("ClaimType")
@@ -275,7 +300,8 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
 
                     b.Property<string>("RoleId")
                         .IsRequired()
-                        .HasColumnType("varchar(95)");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.HasKey("Id");
 
@@ -284,10 +310,66 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
                     b.ToTable("AspNetRoleClaims", (string)null);
                 });
 
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("longtext");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("longtext");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("longtext");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("IdentityUser");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasMaxLength(100)
                         .HasColumnType("int");
 
                     b.Property<string>("ClaimType")
@@ -298,7 +380,8 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("varchar(95)");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.HasKey("Id");
 
@@ -310,17 +393,20 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("varchar(95)");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("varchar(95)");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("longtext");
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("varchar(95)");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -332,28 +418,40 @@ namespace InfraccionesPedagogicas.Infrastructure.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
                     b.Property<string>("UserId")
-                        .HasColumnType("varchar(95)");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("RoleId")
-                        .HasColumnType("varchar(95)");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.HasKey("UserId", "RoleId");
 
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "b5b8ed22-b18a-4496-bd9c-5be0dedee5a2",
+                            RoleId = "c3f2ef86-8dc6-4604-ab8c-fd53f6bddf24"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
                     b.Property<string>("UserId")
-                        .HasColumnType("varchar(95)");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("varchar(95)");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("varchar(95)");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("Value")
                         .HasColumnType("longtext");

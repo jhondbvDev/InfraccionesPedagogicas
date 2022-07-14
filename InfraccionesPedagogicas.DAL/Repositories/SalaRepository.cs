@@ -29,5 +29,21 @@ namespace InfraccionesPedagogicas.Infrastructure.Repositories
             var sala = await _context.Salas.Include(b => b.Usuario).FirstOrDefaultAsync(x=>x.Id==salaId);
             return sala;
         }
+
+        public async Task<bool> UpdateCupo(Sala sala)
+        {
+            var salaOld = await GetById(sala.Id);
+
+            if (salaOld != null)
+            {
+                salaOld.Cupo = sala.Cupo;
+                return await Update(salaOld);
+            }
+            else
+            {
+                throw new Exception("La sala que estas intentando editar no existe, intenta con otra sala.");
+                //throw new BusinessException("La sala que estas intentando editar no existe, intenta con otra sala.");
+            }
+        }
     }
 }

@@ -20,6 +20,22 @@ namespace InfraccionesPedagogicas.Application.Services
             _infraccionService = infraccionService;
             _infractorService = infractorService;
         }
+        private bool ValidateFile(ExcelPackage file)
+        {
+            bool isValid = true;
+            ExcelWorksheet worksheet = file.Workbook.Worksheets[0];
+            string[] headers = { "NRO_COMPARENDO", "FECHA_COMPARENDO", "TIPO_COMPARENDO", "COD_INFRACCION", "ID_USUARIO", "NOMBRES", "APELLIDOS" };
+            for (int i = 1; i < headers.Length+1; i++)
+            {
+                isValid = worksheet.Cells[1, i].Value.ToString().Trim() == headers[i-1];
+                if (!isValid)
+                    return isValid;
+            }
+
+            isValid = worksheet.Dimension.End.Row > 1;
+
+            return isValid;
+        }
         public bool ProcessFile(IFormFile file)
         {
             try
@@ -30,6 +46,12 @@ namespace InfraccionesPedagogicas.Application.Services
                 using (var package = new ExcelPackage(excelPorProcesar))
                 {
                     ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
+
+                    var isValidFile = ValidateFile(package);
+                    if (!isValidFile)
+                    {
+                        return false;
+                    }
 
                     for (int i = worksheet.Dimension.Start.Row + 1; i < worksheet.Dimension.End.Row; i++)
                     {
@@ -70,5 +92,7 @@ namespace InfraccionesPedagogicas.Application.Services
             }
 
         }
+
+      
     }
 }
