@@ -16,6 +16,11 @@ namespace InfraccionesPedagogicas.Application.Services
         {
 
             entity.Cupo= entity.TotalCupo;
+            var sala = _salaRepository.GetByDate(entity.Fecha);
+            if (sala != null)
+            {
+                throw new BusinessException("Ya existe una sala programada en esta fecha");
+            }
             await _salaRepository.Add(entity);
         }
 

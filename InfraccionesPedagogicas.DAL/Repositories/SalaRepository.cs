@@ -30,6 +30,11 @@ namespace InfraccionesPedagogicas.Infrastructure.Repositories
             return sala;
         }
 
+        public async Task<Sala> GetByDate(DateTime date)
+        {
+            return await _context.Salas.FirstOrDefaultAsync(x => x.Fecha == date);
+        }
+
         public async Task<bool> UpdateCupo(Sala sala)
         {
             var salaOld = await GetById(sala.Id);

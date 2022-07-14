@@ -63,9 +63,18 @@ namespace InfraccionesPedagogicas.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateSala(CreateSalaDTO dto)
         {
-            var sala = _mapper.Map<Sala>(dto);
-            await _salaService.Add(sala);
-            return Ok("Sala creada con exito");
+            try
+            {
+                var sala = _mapper.Map<Sala>(dto);
+                await _salaService.Add(sala);
+                return Ok("Sala creada con exito");
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+          
         }
 
         [HttpPut]
