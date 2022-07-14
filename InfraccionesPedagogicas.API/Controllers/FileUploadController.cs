@@ -19,9 +19,9 @@ namespace InfraccionesPedagogicas.API.Controllers
         public async Task<IActionResult> ProcessInfracciones(IFormFile file)
         {
             var result = _fileUploadService.ProcessFile(file);
-            string message = result==true?"Carga completada exitosamente":"Ocurrio un error al cargar los archivos";
+            //string message = result==true?"Carga completada exitosamente":"Ocurrio un error al cargar los archivos";
 
-            return Ok(message);
+            return Ok(result);
             
         }
 

@@ -47,11 +47,7 @@ if (app.Environment.IsDevelopment())
         options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
         options.RoutePrefix = string.Empty;
     });
-}
-app.UseHttpsRedirection();
-
-
-app.UseCors(
+    app.UseCors(
             option =>
             {
                 option.WithOrigins("http://localhost:4200");
@@ -59,6 +55,29 @@ app.UseCors(
                 option.AllowAnyHeader();
             }
         );
+}
+else if (app.Environment.IsProduction())
+{
+    app.UseCors(
+           option =>
+           {
+               option.WithOrigins("https://cursosamonestacion.transitobello.com/");
+               option.AllowAnyMethod();
+               option.AllowAnyHeader();
+           }
+       );
+}
+app.UseHttpsRedirection();
+
+app.UseCors(
+           option =>
+           {
+               option.WithOrigins("http://localhost:4200");
+               option.AllowAnyMethod();
+               option.AllowAnyHeader();
+           }
+       );
+
 
 app.UseAuthentication();
 app.UseAuthorization();
