@@ -55,7 +55,7 @@ namespace InfraccionesPedagogicas.API.Controllers
             {
                 Asistio = asistencia.Asistio,
                 Id = asistencia.Id,
-                NombreInfractor = asistencia.Infractor.Nombre
+                NombreInfractor = asistencia.Infractor.Nombre + " " + asistencia.Infractor.Apellido
             });
             return Ok(asistenciaDto);
         }
