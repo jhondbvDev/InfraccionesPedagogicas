@@ -37,6 +37,8 @@ else if (builder.Environment.IsProduction())
     });
 }
 
+
+
 builder.Services.AddControllers();
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);

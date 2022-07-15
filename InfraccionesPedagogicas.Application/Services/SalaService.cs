@@ -14,14 +14,26 @@ namespace InfraccionesPedagogicas.Application.Services
         }
         public async Task Add(Sala entity)
         {
-
-            entity.Cupo= entity.TotalCupo;
-            var sala = _salaRepository.GetByDate(entity.Fecha);
-            if (sala != null)
+            try
             {
-                throw new BusinessException("Ya existe una sala programada en esta fecha");
+                entity.Cupo = entity.TotalCupo;
+                var sala = await _salaRepository.GetByDate(entity.Fecha);
+                if (sala != null)
+                {
+                    throw new BusinessException("Ya existe una sala programada en esta fecha");
+                }
+                await _salaRepository.Add(entity);
             }
-            await _salaRepository.Add(entity);
+            catch(BusinessException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+
+                throw new BusinessException("Ocurrio un error creando la sala , comuniquese con el administrador");
+            }
+        
         }
 
         public async Task<bool> Delete(int Id)
