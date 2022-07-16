@@ -164,7 +164,7 @@ namespace InfraccionesPedagogicas.Infrastructure.Services
                 userDetails.Add(new(user.Id, user.Nombre, user.Email, role));
             }
 
-            return userDetails;
+            return userDetails.Where(user => user.role != "TMB").ToList();
         }
 
         public async Task<List<(string id, string roleName)>> GetRolesAsync()

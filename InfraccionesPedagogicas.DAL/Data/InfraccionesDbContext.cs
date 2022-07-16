@@ -57,6 +57,11 @@ namespace InfraccionesPedagogicas.Infrastructure.Data
         }
         private void SeedRoles(ModelBuilder modelBuilder)
         {
+            IdentityRole admin = new IdentityRole();
+            admin.Id = "c3f2ef86-8dc6-4604-ab8c-fd53f6bddf25";
+            admin.Name = "ADMIN";
+            admin.NormalizedName = "ADMIN";
+
             IdentityRole tmb = new IdentityRole();
             tmb.Id = "c3f2ef86-8dc6-4604-ab8c-fd53f6bddf24";
             tmb.Name = "TMB";
@@ -67,28 +72,54 @@ namespace InfraccionesPedagogicas.Infrastructure.Data
             sm.Name = "SM";
             sm.NormalizedName = "SM";
             //Seed Data
-            modelBuilder.Entity<IdentityRole>().HasData(tmb, sm);
+            modelBuilder.Entity<IdentityRole>().HasData(admin, tmb, sm);
         }
 
         private void SeedUsers(ModelBuilder modelBuilder)
         {
+            const string adminId = "c3f2ef86-8dc6-4604-ab8c-fd53f6bddf25";
+            const string userId1 = "b5b8ed22-b18a-4496-bd9c-5be0dedee5a3";
+
             const string roleId = "c3f2ef86-8dc6-4604-ab8c-fd53f6bddf24";
-            const string userId = "b5b8ed22-b18a-4496-bd9c-5be0dedee5a2";
+            const string userId2 = "b5b8ed22-b18a-4496-bd9c-5be0dedee5a2";
 
             var hasher = new PasswordHasher<Usuario>();
-            Usuario tmb = new Usuario();
-            tmb.Id = userId;
-            tmb.Nombre = "Admin";
-            tmb.UserName = "tmb@transitobello.com";
-            tmb.NormalizedUserName = "TMB@TRANSITOBELLO.COM";
-            tmb.Email = "tmb@transitobello.com";
+            Usuario admin = new Usuario
+            {
+                Id = userId1,
+                Nombre = "Admin",
+                UserName = "admin@transitobello.com",
+                NormalizedUserName = "ADMIN@TRANSITOBELLO.COM",
+                Email = "admin@transitobello.com",
+                SecurityStamp = new Guid().ToString("D")
+            };
+            admin.PasswordHash = hasher.HashPassword(admin, "Secretaria1.");
+
+            IdentityUserRole<string> adminRole = new IdentityUserRole<string>
+            {
+                RoleId = adminId,
+                UserId = userId1
+            };
+
+            //Seed Data
+            modelBuilder.Entity<Usuario>().HasData(admin);
+            modelBuilder.Entity<IdentityUserRole<string>>().HasData(adminRole);
+
+            Usuario tmb = new Usuario
+            {
+                Id = userId2,
+                Nombre = "TMB",
+                UserName = "tmb@transitobello.com",
+                NormalizedUserName = "TMB@TRANSITOBELLO.COM",
+                Email = "tmb@transitobello.com",
+                SecurityStamp = new Guid().ToString("D")
+            };
             tmb.PasswordHash = hasher.HashPassword(tmb, "Infracciones1.");
-            tmb.SecurityStamp = new Guid().ToString("D");
 
             IdentityUserRole<string> userRole = new IdentityUserRole<string>
             {
                 RoleId = roleId,
-                UserId = userId
+                UserId = userId2
             };
 
             //Seed Data
