@@ -2,10 +2,11 @@
 
 namespace InfraccionesPedagogicas.Application.Interfaces.Services
 {
-    public interface IAsistenciaService : IBaseService<Asistencia,int>
+    public interface IAsistenciaService : IBaseService<Asistencia, int>
     {
-        Task<Asistencia> GetAsistenciaByInfractor(string infractorId); 
-         Task<IEnumerable<Asistencia>> GetAsistenciaBySala(int idsala);
-         Task<bool> HasRegisteredInfractores(int idsala);
+        Task<Asistencia> GetAsistenciaByInfractor(string infractorId);
+        Task<IEnumerable<Asistencia>> GetAsistenciaBySala(int idsala);
+        Task<bool> HasRegisteredInfractores(int idsala);
+        Task<IEnumerable<Asistencia>> GetAsistenciaBySalaDeep(int idSala);
     }
 }

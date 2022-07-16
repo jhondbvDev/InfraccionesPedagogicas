@@ -2,7 +2,9 @@
 using InfraccionesPedagogicas.Application.Interfaces.Repositories;
 using InfraccionesPedagogicas.Application.Interfaces.Services;
 using InfraccionesPedagogicas.Core.Entities;
+using OfficeOpenXml;
 using System.Transactions;
+using System.IO;
 
 namespace InfraccionesPedagogicas.Application.Services
 {
@@ -36,12 +38,12 @@ namespace InfraccionesPedagogicas.Application.Services
 
                 scope.Complete();
             }
-            
+
         }
 
         public async Task<IEnumerable<Asistencia>> GetAll()
         {
-            return await _asistenciaRepository.GetAll();    
+            return await _asistenciaRepository.GetAll();
         }
 
         public async Task<Asistencia> GetById(int id)
@@ -53,7 +55,7 @@ namespace InfraccionesPedagogicas.Application.Services
         {
             var asistenciaOld = await _asistenciaRepository.GetById(entity.Id);
 
-            if(asistenciaOld != null)
+            if (asistenciaOld != null)
             {
                 asistenciaOld.Asistio = entity.Asistio;
 
@@ -82,10 +84,17 @@ namespace InfraccionesPedagogicas.Application.Services
             return await _asistenciaRepository.GetAsistenciaBySala(idsala);
         }
 
-        public async Task<bool> HasRegisteredInfractores(int idsala) 
+        public async Task<bool> HasRegisteredInfractores(int idsala)
         {
             return await _asistenciaRepository.HasRegisteredInfractores(idsala);
         }
+
+        public async Task<IEnumerable<Asistencia>> GetAsistenciaBySalaDeep(int idSala)
+        {
+            return await _asistenciaRepository.GetAsistenciaBySalaDeep(idSala);
+        }
+
+
 
         #endregion
     }
