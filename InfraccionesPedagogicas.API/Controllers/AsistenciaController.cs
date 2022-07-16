@@ -14,7 +14,7 @@ namespace InfraccionesPedagogicas.API.Controllers
     [EnableCors("InfraccionesCorsPolicy")]
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class AsistenciaController : ControllerBase
     {
         private readonly IAsistenciaService _asistenciaService;
