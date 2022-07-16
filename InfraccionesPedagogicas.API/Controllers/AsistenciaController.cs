@@ -116,7 +116,8 @@ namespace InfraccionesPedagogicas.API.Controllers
                 var list = asistencias.Select(a =>
                 new
                 {
-                    Infractor = string.Format("{0} {1}", a.Infractor.Nombre, a.Infractor.Apellido),
+                    Documento=a.Infractor.Id,
+                    Nombre = string.Format("{0} {1}", a.Infractor.Nombre, a.Infractor.Apellido),
                     Asistio = a.Asistio == true ? "Si" : "No"
 
                 });
@@ -133,7 +134,6 @@ namespace InfraccionesPedagogicas.API.Controllers
                 stream.Position = 0;
                 string excelName = $"Asistencias-{asistencias.First().Sala.Fecha.ToString()}.xlsx";
 
-                //return File(stream, "application/octet-stream", excelName);
                 var file = File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", excelName);
                 return file;
             }
