@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>dotnet-InfraccionesPedagogicas.BackgroundLoader-CEFDCF66-1544-4C08-A329-26CE5DDEC9E3</UserSecretsId>
+    <Configurations>Debug;Release;test</Configurations>
   </PropertyGroup>
 
   <ItemGroup>

@@ -14,14 +14,17 @@ namespace InfraccionesPedagogicas.API.Controllers
         private readonly IIdentityService _identityService;
         private readonly ITokenService _tokenService;
         private readonly IInfractorService _infractorService;
+        private readonly IConfiguration _configuration;
 
         public AuthController(IIdentityService identityService,
             ITokenService tokenService,
-            IInfractorService infractorService)
+            IInfractorService infractorService,
+            IConfiguration configuration)
         {
             _identityService = identityService;
             _tokenService = tokenService;
             _infractorService = infractorService;
+            _configuration = configuration;
         }
 
         [HttpPost("generateToken")]
@@ -47,7 +50,11 @@ namespace InfraccionesPedagogicas.API.Controllers
         [HttpGet("test")]
         public async Task<IActionResult> Test()
         {
-            return Ok("Funciona");
+            var connection = this._configuration.GetConnectionString("MySqlConnection");
+            var properties = connection.Split(";");
+            return Ok(string.Format("connected to : {0} {1} {2} ; environment : {3}", 
+                properties[0], properties[1], properties[2],
+                Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")));
         }
 
         [HttpPost("signIn")]
