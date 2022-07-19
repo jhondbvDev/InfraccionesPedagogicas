@@ -1,4 +1,5 @@
 ﻿using InfraccionesPedagogicas.Application.Exceptions;
+using InfraccionesPedagogicas.Application.Interfaces;
 using InfraccionesPedagogicas.Application.Interfaces.Repositories;
 using InfraccionesPedagogicas.Application.Interfaces.Services;
 using InfraccionesPedagogicas.Core.Entities;
@@ -8,9 +9,11 @@ namespace InfraccionesPedagogicas.Application.Services
     public class SalaService : ISalaService
     {
         private readonly ISalaRepository _salaRepository;
-        public SalaService(ISalaRepository salaRepository)
+        private readonly IAsistenciaRepository _asistenciaRepository;
+        public SalaService(ISalaRepository salaRepository, IAsistenciaRepository asistenciaRepository)
         {
             _salaRepository = salaRepository;
+            _asistenciaRepository = asistenciaRepository;   
         }
         public async Task Add(Sala entity)
         {
@@ -38,7 +41,12 @@ namespace InfraccionesPedagogicas.Application.Services
 
         public async Task<bool> Delete(int Id)
         {
+            bool result = await _asistenciaRepository.HasRegisteredInfractores(Id);
             var sala = await _salaRepository.GetById(Id);
+            if (result && sala.Fecha.AddHours(2) > DateTime.Now)
+            {
+                throw new BusinessException("La sala no puede ser eliminada por que ya tiene infractores inscritos , intente nuevamente 2 horas despues del inicio de la reunion");
+            }
             return await _salaRepository.Delete(sala);
         }
 
@@ -62,9 +70,9 @@ namespace InfraccionesPedagogicas.Application.Services
             return await _salaRepository.GetDeep(salaId);
         }
 
-        public async Task<IEnumerable<Sala>> GetDeepForUser(string userId)
+        public async Task<IEnumerable<Sala>> GetDeepForUser(IPaginationFilter pagination, string userId)
         {
-            return await _salaRepository.GetDeepForUser(userId);
+            return await _salaRepository.GetDeepForUser(pagination.PageNumber,pagination.PageSize, userId);
         }
 
         public async Task<bool> UpdateCupo(Sala entity)

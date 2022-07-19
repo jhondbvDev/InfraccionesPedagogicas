@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
 using InfraccionesPedagogicas.Application.DTOs;
+using InfraccionesPedagogicas.Application.Interfaces;
+using InfraccionesPedagogicas.Application.Pagination;
 using InfraccionesPedagogicas.Application.Interfaces.Services;
+using InfraccionesPedagogicas.Application.Response;
 using InfraccionesPedagogicas.Core.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
@@ -38,9 +41,9 @@ namespace InfraccionesPedagogicas.API.Controllers
         }
 
         [HttpGet("Deep/User/{userId}")]
-        public async Task<IActionResult> GetSalasForUserDeep(string userId)
+        public async Task<IActionResult> GetSalasForUserDeep( [FromQuery]PaginationFilter pagination, string userId)
         {
-            var salas = await _salaService.GetDeepForUser(userId);
+            var salas = await _salaService.GetDeepForUser(pagination,userId);
             var salasDto = _mapper.Map<List<SalaDTO>>(salas);
             return Ok(salasDto);
         }
@@ -88,8 +91,16 @@ namespace InfraccionesPedagogicas.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSala(int id)
         {
-            var result = await _salaService.Delete(id);
-            return Ok(result);
+            try
+            {
+                var result = await _salaService.Delete(id);
+                return Ok(new Response<bool>(result,Application.Enums.ResponseStatus.Success,"Sala eliminada exitosamente."));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new Response<bool>(false,Application.Enums.ResponseStatus.Error,ex.Message));
+            }
+            
         }
     }
 }

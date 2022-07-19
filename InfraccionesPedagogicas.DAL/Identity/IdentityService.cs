@@ -1,5 +1,7 @@
 ﻿using InfraccionesPedagogicas.Application.Exceptions;
+using InfraccionesPedagogicas.Application.Interfaces;
 using InfraccionesPedagogicas.Application.Interfaces.Services;
+using InfraccionesPedagogicas.Application.Pagination;
 using InfraccionesPedagogicas.Core.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -151,11 +153,16 @@ namespace InfraccionesPedagogicas.Infrastructure.Services
             return userDetails;
         }
 
-        public async Task<List<(string id, string userName, string email, string role)>> GetAllUsersDetailsExceptLoggedUserAsync(string userId)
+        public async Task<List<(string id, string userName, string email, string role)>> 
+            GetAllUsersDetailsExceptLoggedUserAsync( IPaginationFilter pagination,string userId)
         {
             var userDetails = new List<(string id, string userName, string email, string role)>();
 
-            var users = await _userManager.Users.Where(user => user.Id != userId).ToListAsync();
+            var users = await _userManager.Users
+                .Where(user => user.Id != userId)
+                .Skip((pagination.PageNumber - 1) * pagination.PageSize)
+                .Take(pagination.PageSize)
+                .ToListAsync();
 
             foreach (Usuario user in users)
             {

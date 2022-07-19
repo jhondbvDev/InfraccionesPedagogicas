@@ -18,9 +18,14 @@ namespace InfraccionesPedagogicas.Infrastructure.Repositories
             return salas;
         }
 
-        public async Task<IEnumerable<Sala>> GetDeepForUser(string userId)
+        public async Task<IEnumerable<Sala>> GetDeepForUser(int pageNumber,int pageSize, string userId)
         {
-            var salas = await _context.Salas.Where(sala => sala.UsuarioId == userId).Include(b => b.Usuario).ToListAsync();
+            var salas = await _context.Salas
+                .Where(sala => sala.UsuarioId == userId)
+                .Include(b => b.Usuario)
+                .Skip((pageNumber- 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
             return salas;
         }
 

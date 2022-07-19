@@ -1,6 +1,7 @@
 ﻿using InfraccionesPedagogicas.Application.DTOs;
 using InfraccionesPedagogicas.Application.Exceptions;
 using InfraccionesPedagogicas.Application.Interfaces.Services;
+using InfraccionesPedagogicas.Application.Pagination;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.RegularExpressions;
@@ -62,9 +63,9 @@ namespace InfraccionesPedagogicas.API.Controllers
 
         [HttpGet("{userId}")]
 
-        public async Task<List<GetUsersDTO>> GetUsers(string userId)
+        public async Task<List<GetUsersDTO>> GetUsers([FromQuery] PaginationFilter pagination,string userId)
         {
-            var userDetails = await _identityService.GetAllUsersDetailsExceptLoggedUserAsync(userId);
+            var userDetails = await _identityService.GetAllUsersDetailsExceptLoggedUserAsync(pagination,userId);
 
             var userDetailsDTO = userDetails.Select(u => new GetUsersDTO
             {
