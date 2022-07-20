@@ -55,9 +55,19 @@ namespace InfraccionesPedagogicas.Application.Services
             return await _salaRepository.GetAll();
         }
 
+        public async Task<int> GetCountAllDeep()
+        {
+            return await _salaRepository.GetCountAllDeep();
+        }
+
         public async Task<IEnumerable<Sala>> GetAllDeep()
         {
             return await _salaRepository.GetAllDeep();
+        }
+
+        public async Task<IEnumerable<Sala>> GetAllDeep(IPaginationFilter pagination)
+        {
+            return await _salaRepository.GetAllDeep(pagination.PageNumber, pagination.PageSize);
         }
 
         public async Task<Sala> GetById(int id)
@@ -73,6 +83,11 @@ namespace InfraccionesPedagogicas.Application.Services
         public async Task<IEnumerable<Sala>> GetDeepForUser(IPaginationFilter pagination, string userId)
         {
             return await _salaRepository.GetDeepForUser(pagination.PageNumber,pagination.PageSize, userId);
+        }
+
+        public async Task<int> GetDeepCountForUser(string userId)
+        {
+            return await _salaRepository.GetDeepCountForUser(userId);
         }
 
         public async Task<bool> UpdateCupo(Sala entity)

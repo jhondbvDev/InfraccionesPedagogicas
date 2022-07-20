@@ -40,12 +40,34 @@ namespace InfraccionesPedagogicas.API.Controllers
             return Ok(salasDto);
         }
 
+        [HttpGet("Deep/Pagination")]
+        public async Task<IActionResult> GetSalasDeepWithPagination([FromQuery] PaginationFilter pagination)
+        {
+            var salas = await _salaService.GetAllDeep(pagination);
+            var salasDto = _mapper.Map<List<SalaDTO>>(salas);
+            return Ok(salasDto);
+        }
+
+        [HttpGet("Deep/Count")]
+        public async Task<IActionResult> GetCountSalasDeep()
+        {
+            var salasCount = await _salaService.GetCountAllDeep();
+            return Ok(salasCount);
+        }
+
         [HttpGet("Deep/User/{userId}")]
-        public async Task<IActionResult> GetSalasForUserDeep( [FromQuery]PaginationFilter pagination, string userId)
+        public async Task<IActionResult> GetSalasForUserDeep([FromQuery]PaginationFilter pagination, string userId)
         {
             var salas = await _salaService.GetDeepForUser(pagination,userId);
             var salasDto = _mapper.Map<List<SalaDTO>>(salas);
             return Ok(salasDto);
+        }
+
+        [HttpGet("Deep/User/Count/{userId}")]
+        public async Task<IActionResult> GetSalasForUserDeep(string userId)
+        {
+            var salasCount = await _salaService.GetDeepCountForUser(userId);
+            return Ok(salasCount);
         }
 
         [HttpGet("Deep/{salaId}")]

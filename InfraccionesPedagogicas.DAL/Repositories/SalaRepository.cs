@@ -13,9 +13,25 @@ namespace InfraccionesPedagogicas.Infrastructure.Repositories
 
         public async Task<IEnumerable<Sala>> GetAllDeep()
         {
-            var salas = await _context.Salas.Where(x=>x.Cupo>0 && x.Fecha>DateTime.Now)
-                .Include(b => b.Usuario).ToListAsync();
+            var salas = await _context.Salas.Where(x => x.Cupo > 0 && x.Fecha > DateTime.Now)
+                .Include(b => b.Usuario)
+                .ToListAsync();
             return salas;
+        }
+
+        public async Task<IEnumerable<Sala>> GetAllDeep(int pageNumber, int pageSize)
+        {
+            var salas = await _context.Salas.Where(x=>x.Cupo>0 && x.Fecha>DateTime.Now)
+                .Include(b => b.Usuario)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+            return salas;
+        }
+
+        public async Task<int> GetCountAllDeep()
+        {
+            return await _context.Salas.Where(x => x.Cupo > 0 && x.Fecha > DateTime.Now).CountAsync();
         }
 
         public async Task<IEnumerable<Sala>> GetDeepForUser(int pageNumber,int pageSize, string userId)
@@ -29,6 +45,12 @@ namespace InfraccionesPedagogicas.Infrastructure.Repositories
             return salas;
         }
 
+        public async Task<int> GetDeepCountForUser(string userId)
+        {
+            return await _context.Salas.Where(sala => sala.UsuarioId == userId).CountAsync(); ;
+        }
+
+        
         public async Task<Sala> GetDeep(int salaId)
         {
             var sala = await _context.Salas.Include(b => b.Usuario).FirstOrDefaultAsync(x=>x.Id==salaId);
