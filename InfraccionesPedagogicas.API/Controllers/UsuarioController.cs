@@ -78,6 +78,15 @@ namespace InfraccionesPedagogicas.API.Controllers
             return userDetailsDTO;
         }
 
+        [HttpGet("count/{userId}")]
+
+        public async Task<int> GetUsersCount(string userId)
+        {
+            var userCount = await _identityService.GetCountForAllUsersDetailsExceptLoggedUserAsync(userId);
+
+            return userCount;
+        }
+
         [HttpDelete("{userId}")]
 
         public async Task<IActionResult> DeleteUser(string userId)

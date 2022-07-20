@@ -174,6 +174,11 @@ namespace InfraccionesPedagogicas.Infrastructure.Services
             return userDetails.Where(user => user.role != "TMB").ToList();
         }
 
+        public async Task<int> GetCountForAllUsersDetailsExceptLoggedUserAsync(string userId)
+        {
+            return await _userManager.Users.Where(user => user.Id != userId).CountAsync();
+        }
+
         public async Task<List<(string id, string roleName)>> GetRolesAsync()
         {
             var roles = await _roleManager.Roles.Select(x => new
